@@ -708,7 +708,7 @@ tr:hover td{background:#FAFAF8;}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <script>
-const API='https://script.google.com/macros/s/AKfycbxz0-ZVsHF3HPqQh7l_Rve1ck8tkBht1GSPonshC-CwR2Z6qD77G5O4wvLsujg0jC8/exec';
+const API='https://script.google.com/macros/s/AKfycbxr_V00w7ncUDb1wCv_J4kGqyHJ8_p82pwXfSxmoDeHmHGlEmBfN2q3jorN_aaIWIk/exec';
 let currentUser=null,allAreas=[],allBP=[],allCases=[],allLogs=[];
 let selectedCat='',selectedSev='',selectedStat='open',selectedScope='Branch',selectedRutinStat='prog';
 let currentTipe='noncase',logFilterStatus='semua',pendingFormData=null,lineChartInstance=null;
@@ -718,10 +718,25 @@ const SCOPE_VALUE={'Branch':1,'Entity':3,'Region':6,'Nasional':10};
 
 function showToast(msg,type=''){const t=document.getElementById('toast');t.textContent=msg;t.className='toast show '+type;setTimeout(()=>t.className='toast',3000);}
 function showLoading(v){document.getElementById('loading').classList.toggle('show',v);}
-async function api(params){
-  const url=API+'?'+new URLSearchParams(params);
-  const res=await fetch(url);
-  return res.json();
+function api(params){
+  return new Promise((resolve, reject) => {
+    const cbName = 'cb_' + Date.now();
+    const script = document.createElement('script');
+    params.callback = cbName;
+    const url = API + '?' + new URLSearchParams(params);
+    window[cbName] = (data) => {
+      delete window[cbName];
+      document.body.removeChild(script);
+      resolve(data);
+    };
+    script.onerror = () => {
+      delete window[cbName];
+      document.body.removeChild(script);
+      reject(new Error('JSONP error'));
+    };
+    script.src = url;
+    document.body.appendChild(script);
+  });
 }
 function today(){return new Date().toISOString().split('T')[0];}
 function formatTgl(d){if(!d)return'—';const s=String(d).split('T')[0].split('-');return s.length<3?String(d):`${s[2]}/${s[1]}/${s[0]}`;}
