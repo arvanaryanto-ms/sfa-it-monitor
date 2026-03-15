@@ -809,11 +809,15 @@ document.addEventListener('click',e=>{if(!document.getElementById('notif-wrap').
 async function loadMasterData(){
   showLoading(true);
   try{
-    const[aR,bR,cR]=await Promise.all([api({action:'getArea'}),api({action:'getBP'}),api({action:'getCase'})]);
-    allAreas=aR.data||[];allBP=bR.data||[];allCases=cR.data||[];
+    const aR=await api({action:'getArea'});
+    allAreas=aR.data||[];
+    const bR=await api({action:'getBP'});
+    allBP=bR.data||[];
+    const cR=await api({action:'getCase'});
+    allCases=cR.data||[];
     populateAreaDropdown();
     populateDashEntity();
-  }catch(e){showToast('Gagal load master data','error');}
+  }catch(e){showToast('Gagal load master data: '+e.message,'error');}
   showLoading(false);
 }
 function populateAreaDropdown(){
