@@ -401,7 +401,7 @@ tr:hover td{background:#FAFAF8;}
       <div class="grid3">
         <div class="fg"><label>Tanggal <span class="req">*</span></label><input type="date" id="f-tanggal"></div>
         <div class="fg">
-          <label>User</label>
+          <label>User <span class="req">*</span></label>
           <input type="text" id="f-user" placeholder="NAMA USER" oninput="this.value=this.value.toUpperCase()">
           <div class="hint">Otomatis huruf kapital</div>
         </div>
@@ -488,7 +488,6 @@ tr:hover td{background:#FAFAF8;}
           </div>
         </div>
         <div class="fg">
-          <label>Scope Dampak <span class="req">*</span></label>
           <div class="scope-row">
             <div class="scope-pill sc-active" id="sc-branch"   onclick="setScope('Branch',this)">Branch</div>
             <div class="scope-pill"           id="sc-entity"   onclick="setScope('Entity',this)">Entity</div>
@@ -709,7 +708,7 @@ tr:hover td{background:#FAFAF8;}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <script>
-const API='https://script.google.com/macros/s/AKfycbwuUByI0PkXygNpBvbcHchvWAuxuC2zxBoAvU21c6IZupaqtYnjAOFK4f2WZl9Q6D4/exec';
+const API='https://script.google.com/macros/s/AKfycbz9Dl8rShoTeD18ukdcmV8a9obSqao0cwnGplGdWyH2D-puGXhLlRV9Py57w5PHm5A/exec';
 let currentUser=null,allAreas=[],allBP=[],allCases=[],allLogs=[];
 let selectedCat='',selectedSev='',selectedStat='open',selectedScope='Branch',selectedRutinStat='prog';
 let currentTipe='noncase',logFilterStatus='semua',pendingFormData=null,lineChartInstance=null;
@@ -772,6 +771,10 @@ window.addEventListener('load', async () => {
       await loadMasterData();
       initForm();
       loadNotifikasi();
+      // Restore tab aktif
+      const savedTab = sessionStorage.getItem('sfa_tab') || 'form';
+      const tabEl = document.querySelectorAll('.ntab')[['form','log','dash'].indexOf(savedTab)];
+      showTab(savedTab, tabEl);
     }catch(e){ sessionStorage.removeItem('sfa_user'); }
   }
 });
@@ -890,16 +893,19 @@ function setType(type){
   document.getElementById('btn-case').className='type-btn'+(type==='case'?' t-case':'');
   document.getElementById('case-sec').style.display=type==='case'?'block':'none';
   document.getElementById('noncase-status-sec').style.display=type==='noncase'?'block':'none';
-  // Scope: tampilkan checklist jika bukan Branch (berlaku untuk semua tipe)
-  const showMulti = selectedScope !== 'Branch';
-  document.getElementById('multi-wrap').style.display = showMulti ? 'block' : 'none';
+  // Reset scope ke Branch saat ganti tipe
+  selectedScope='Branch';
+  checkedAreas.clear();
+  document.querySelectorAll('.scope-pill').forEach(p=>p.classList.remove('sc-active'));
+  const branchEl=document.getElementById('sc-branch');
+  if(branchEl)branchEl.classList.add('sc-active');
+  document.getElementById('multi-wrap').style.display='none';
+  document.getElementById('bobot-display').textContent='1';
   const badge=document.getElementById('bp-badge');
   badge.textContent=type==='noncase'?'Non Case':'Case / Masalah';
   badge.style.background=type==='noncase'?'var(--green-l)':'var(--bug-l)';
   badge.style.color=type==='noncase'?'var(--green-d)':'var(--bug-d)';
   // Update section numbers
-  // Non Case: BP=2, Area=3, Status=4
-  // Case:     BP=2, Detail=3, Area=4, Status hidden
   if(type==='noncase'){
     if(document.getElementById('snum-bp'))         document.getElementById('snum-bp').textContent='2';
     if(document.getElementById('snum-case-detail'))document.getElementById('snum-case-detail').textContent='3';
@@ -943,15 +949,23 @@ function onAreaChange(){
   document.getElementById('auto-region').textContent=opt?.dataset?.region||'—';
   document.getElementById('auto-entity').textContent=opt?.dataset?.entity||'—';
   checkedAreas.clear();
+  if(selectedScope !== 'Branch'){
+    autoCheckByScope(selectedScope);
+  }
   renderChecklist();
+  updateBobot();
 }
 function setScope(scope,el){
   selectedScope=scope;
   document.querySelectorAll('.scope-pill').forEach(p=>p.classList.remove('sc-active'));
   if(el)el.classList.add('sc-active');
-  const showMulti=scope!=='Branch'&&currentTipe==='case';
-  document.getElementById('multi-wrap').style.display=showMulti?'block':'none';
-  if(showMulti)renderChecklist();
+  if(scope==='Branch'){
+    document.getElementById('multi-wrap').style.display='none';
+  } else {
+    document.getElementById('multi-wrap').style.display='block';
+    autoCheckByScope(scope);
+    renderChecklist();
+  }
   updateValue();
 }
 function updateValue(){
@@ -987,7 +1001,9 @@ function showConfirm(){
   const areaOpt=areaSel.options[areaSel.selectedIndex];
   const bp=document.getElementById('f-bp').value;
   const activity=document.getElementById('f-activity').value;
+  const user=document.getElementById('f-user').value.trim();
   if(!tanggal||!areaSel.value||!bp||!activity){showToast('Lengkapi field wajib (*)','error');return;}
+  if(!user){showToast('User wajib diisi','error');return;}
   if(currentTipe==='case'&&!selectedCat){showToast('Pilih Kategori Case','error');return;}
   if(currentTipe==='case'&&!selectedSev){showToast('Pilih Severity terlebih dahulu','error');return;}
 
@@ -1093,7 +1109,7 @@ function renderLogTable(){
     const sevB=!r.severity?'—':r.severity==='Critical'?'<span class="badge critical">Critical</span>':r.severity==='High'?'<span class="badge high">High</span>':'<span class="badge medium">Medium</span>';
     const statB=r.status==='Open'?'<span class="badge open">Open</span>':r.status==='In Progress'?'<span class="badge prog">In Progress</span>':r.status==='Solved'?'<span class="badge solved">Solved</span>':r.status==='Selesai'?'<span class="badge solved">Selesai</span>':'<span class="badge esc">Escalated</span>';
     const dur=r.durasi?parseInt(r.durasi):0;
-    const durB=!dur?'<span class="db do">—</span>':dur<=3?`<span class="db dg">${dur}h</span>`:dur<=7?`<span class="db dm">${dur}h</span>`:`<span class="db dr">${dur}h</span>`;
+    const durB=!dur?'<span class="db do">—</span>':dur<=3?`<span class="db dg">${dur}</span>`:dur<=7?`<span class="db dm">${dur}</span>`:`<span class="db dr">${dur}</span>`;
     const canUpd=r.status!=='Solved'&&r.status!=='Selesai'&&r.status!=='Escalated';
     const histHtml=r.catatan_update?`<div class="hi"><div class="hdot p"></div><div><div class="htxt">${r.catatan_update}</div><div class="hdate">${r.update_oleh||''}</div></div></div>`:'';
     const upPanel=canUpd?`
@@ -1140,7 +1156,12 @@ function toggleUpdate(pid,btn){
   const p=document.getElementById(pid);const isOpen=p.classList.contains('open');
   document.querySelectorAll('.upanel').forEach(x=>x.classList.remove('open'));
   document.querySelectorAll('.btn-upd').forEach(b=>{if(b.textContent.includes('▴'))b.textContent='Update ▾';});
-  if(!isOpen){p.classList.add('open');if(btn)btn.textContent='Tutup ▴';}
+  if(!isOpen){
+    p.classList.add('open');
+    if(btn)btn.textContent='Tutup ▴';
+    // Reset semua pilihan status saat panel dibuka — user harus pilih manual
+    p.querySelectorAll('.upill').forEach(pill=>pill.classList.remove('on'));
+  }
 }
 function usp(el){const pp=el.closest('.upills');pp.querySelectorAll('.upill').forEach(p=>p.classList.remove('on'));el.classList.add('on');}
 function showTglSol(id,s){document.getElementById(id).style.display=s?'block':'none';}
@@ -1334,6 +1355,13 @@ function showTab(tab,el){
   document.querySelectorAll('.ntab').forEach(t=>t.classList.remove('active'));
   document.getElementById('tab-'+tab).style.display='block';
   if(el)el.classList.add('active');
+  else{
+    // Aktifkan ntab yang sesuai
+    const tabs=['form','log','dash'];
+    const idx=tabs.indexOf(tab);
+    if(idx>=0) document.querySelectorAll('.ntab')[idx].classList.add('active');
+  }
+  sessionStorage.setItem('sfa_tab', tab);
   if(tab==='log')loadLogs();
   if(tab==='dash'){loadLogs().then(()=>{initDashDates();});}
 }
