@@ -708,7 +708,7 @@ tr:hover td{background:#FAFAF8;}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <script>
-const API='https://script.google.com/macros/s/AKfycbz9Dl8rShoTeD18ukdcmV8a9obSqao0cwnGplGdWyH2D-puGXhLlRV9Py57w5PHm5A/exec';
+const API='https://script.google.com/macros/s/AKfycbzQB1pVB9suMpOmmJD9Tu2efBn__GBGLQVqzlOXg5_Mov0VVZtIT8d-LXarHeGisng/exec';
 let currentUser=null,allAreas=[],allBP=[],allCases=[],allLogs=[];
 let selectedCat='',selectedSev='',selectedStat='open',selectedScope='Branch',selectedRutinStat='prog';
 let currentTipe='noncase',logFilterStatus='semua',pendingFormData=null,lineChartInstance=null;
@@ -718,7 +718,20 @@ const SCOPE_VALUE={'Branch':1,'Entity':3,'Region':6,'Nasional':10};
 
 function showToast(msg,type=''){const t=document.getElementById('toast');t.textContent=msg;t.className='toast show '+type;setTimeout(()=>t.className='toast',3000);}
 function showLoading(v){document.getElementById('loading').classList.toggle('show',v);}
-async function api(params){const url=API+'?'+new URLSearchParams(params);const res=await fetch(url);return res.json();}
+async function api(params){
+  const url=API+'?'+new URLSearchParams(params);
+  try {
+    const res=await fetch(url, {
+      method:'GET',
+      redirect:'follow',
+    });
+    return res.json();
+  } catch(e) {
+    // Fallback: try with no-cors then re-fetch
+    const res=await fetch(url);
+    return res.json();
+  }
+}
 function today(){return new Date().toISOString().split('T')[0];}
 function formatTgl(d){if(!d)return'—';const s=String(d).split('T')[0].split('-');return s.length<3?String(d):`${s[2]}/${s[1]}/${s[0]}`;}
 function getBulanLabel(ym){const b=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Ags','Sep','Okt','Nov','Des'];const p=String(ym).split('-');return b[parseInt(p[1])-1]+'\n'+p[0];}
