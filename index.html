@@ -415,9 +415,69 @@ tr:hover td{background:#FAFAF8;}
       </div>
     </div>
 
+    <!-- S3 BP & Activity -->
+    <div class="section">
+      <div class="sec-hdr">
+        <div class="snum" id="snum-bp">3</div>
+        <div class="stitle">Business Process & Activity</div>
+        <span class="ssub" id="bp-badge" style="background:var(--green-l);color:var(--green-d);padding:3px 10px;border-radius:5px;font-size:11px;font-weight:600;">Non Case</span>
+      </div>
+      <div class="grid2" style="margin-bottom:12px;">
+        <div class="fg">
+          <label>Business Process <span class="req">*</span></label>
+          <select id="f-bp" onchange="onBPChange()"><option value="">— Pilih —</option></select>
+        </div>
+        <div class="fg">
+          <label>Activity <span class="req">*</span></label>
+          <select id="f-activity" onchange="onActivityChange()"><option value="">— Pilih BP dulu —</option></select>
+        </div>
+      </div>
+      <div class="fg"><label>Deliverable / KPI</label><div class="info-field" id="f-deliverable">— pilih activity —</div></div>
+    </div>
+
+    <!-- S4 Detail Case -->
+    <div class="section" id="case-sec" style="display:none;">
+      <div class="sec-hdr"><div class="snum" id="snum-case-detail">3</div><div class="stitle">Detail Case</div><span class="ssub">Wajib untuk Case / Masalah</span></div>
+      <div class="grid2" style="margin-bottom:12px;">
+        <div class="fg">
+          <label>Master Case <span class="req">*</span></label>
+          <select id="f-mastercase"><option value="">— Pilih —</option></select>
+        </div>
+        <div class="fg">
+          <label>Kategori <span class="req">*</span></label>
+          <div class="cat-row">
+            <div class="cat-pill" id="cp-bug"   onclick="selCat('bug')">Bug SFA</div>
+            <div class="cat-pill" id="cp-human" onclick="selCat('human')">Human Error</div>
+            <div class="cat-pill" id="cp-data"  onclick="selCat('data')">Data Issue</div>
+            <div class="cat-pill" id="cp-other" onclick="selCat('other')">Lainnya</div>
+          </div>
+        </div>
+      </div>
+      <div class="fg" style="margin-bottom:12px;">
+        <label>Severity <span class="req">*</span></label>
+        <div class="sev-row">
+          <div class="sev-pill" id="sv-critical" onclick="selSev('critical')">🔴 Critical</div>
+          <div class="sev-pill" id="sv-high"     onclick="selSev('high')">🟠 High</div>
+          <div class="sev-pill" id="sv-medium"   onclick="selSev('medium')">🟢 Medium</div>
+        </div>
+      </div>
+      <div class="fg" style="margin-bottom:12px;">
+        <label>Status</label>
+        <div class="stat-row">
+          <div class="stat-pill sp-open"   id="sp-open"   onclick="selStat('open')">Open</div>
+          <div class="stat-pill"           id="sp-prog"   onclick="selStat('prog')">In Progress</div>
+          <div class="stat-pill"           id="sp-solved" onclick="selStat('solved')">Solved</div>
+        </div>
+      </div>
+      <div class="grid2">
+        <div class="fg"><label>Deskripsi Case</label><textarea id="f-deskripsi" placeholder="Detail kendala..."></textarea></div>
+        <div class="fg"><label>Solusi / Tindakan</label><textarea id="f-solusi" placeholder="Tindakan yang sudah dilakukan..."></textarea></div>
+      </div>
+    </div>
+
     <!-- S2 Area -->
     <div class="section">
-      <div class="sec-hdr"><div class="snum">2</div><div class="stitle">Area</div><span class="ssub">Pilih area → Region & Entity otomatis</span></div>
+      <div class="sec-hdr"><div class="snum" id="snum-area">4</div><div class="stitle">Area</div><span class="ssub">Pilih area → Region & Entity otomatis</span></div>
       <div class="grid2">
         <div class="fg">
           <label>Branch / Area Utama <span class="req">*</span></label>
@@ -464,29 +524,9 @@ tr:hover td{background:#FAFAF8;}
       </div>
     </div>
 
-    <!-- S3 BP & Activity -->
-    <div class="section">
-      <div class="sec-hdr">
-        <div class="snum">3</div>
-        <div class="stitle">Business Process & Activity</div>
-        <span class="ssub" id="bp-badge" style="background:var(--green-l);color:var(--green-d);padding:3px 10px;border-radius:5px;font-size:11px;font-weight:600;">Non Case</span>
-      </div>
-      <div class="grid2" style="margin-bottom:12px;">
-        <div class="fg">
-          <label>Business Process <span class="req">*</span></label>
-          <select id="f-bp" onchange="onBPChange()"><option value="">— Pilih —</option></select>
-        </div>
-        <div class="fg">
-          <label>Activity <span class="req">*</span></label>
-          <select id="f-activity" onchange="onActivityChange()"><option value="">— Pilih BP dulu —</option></select>
-        </div>
-      </div>
-      <div class="fg"><label>Deliverable / KPI</label><div class="info-field" id="f-deliverable">— pilih activity —</div></div>
-    </div>
-
     <!-- S4 Status Non Case -->
     <div class="section" id="noncase-status-sec">
-      <div class="sec-hdr"><div class="snum">4</div><div class="stitle">Status Aktivitas</div></div>
+      <div class="sec-hdr"><div class="snum" id="snum-status-nc">4</div><div class="stitle">Status Aktivitas</div></div>
       <div class="fg">
         <label>Status <span class="req">*</span></label>
         <div class="stat-row">
@@ -495,46 +535,6 @@ tr:hover td{background:#FAFAF8;}
         </div>
       </div>
       <div class="fg" style="margin-top:12px;"><label>Keterangan (opsional)</label><textarea id="f-rutin-ket" placeholder="Catatan tambahan..."></textarea></div>
-    </div>
-
-    <!-- S4 Detail Case -->
-    <div class="section" id="case-sec" style="display:none;">
-      <div class="sec-hdr"><div class="snum">4</div><div class="stitle">Detail Case</div><span class="ssub">Wajib untuk Case / Masalah</span></div>
-      <div class="grid2" style="margin-bottom:12px;">
-        <div class="fg">
-          <label>Master Case <span class="req">*</span></label>
-          <select id="f-mastercase"><option value="">— Pilih —</option></select>
-        </div>
-        <div class="fg">
-          <label>Kategori <span class="req">*</span></label>
-          <div class="cat-row">
-            <div class="cat-pill" id="cp-bug"   onclick="selCat('bug')">Bug SFA</div>
-            <div class="cat-pill" id="cp-human" onclick="selCat('human')">Human Error</div>
-            <div class="cat-pill" id="cp-data"  onclick="selCat('data')">Data Issue</div>
-            <div class="cat-pill" id="cp-other" onclick="selCat('other')">Lainnya</div>
-          </div>
-        </div>
-      </div>
-      <div class="fg" style="margin-bottom:12px;">
-        <label>Severity <span class="req">*</span></label>
-        <div class="sev-row">
-          <div class="sev-pill" id="sv-critical" onclick="selSev('critical')">🔴 Critical</div>
-          <div class="sev-pill" id="sv-high"     onclick="selSev('high')">🟠 High</div>
-          <div class="sev-pill" id="sv-medium"   onclick="selSev('medium')">🟢 Medium</div>
-        </div>
-      </div>
-      <div class="fg" style="margin-bottom:12px;">
-        <label>Status</label>
-        <div class="stat-row">
-          <div class="stat-pill sp-open"   id="sp-open"   onclick="selStat('open')">Open</div>
-          <div class="stat-pill"           id="sp-prog"   onclick="selStat('prog')">In Progress</div>
-          <div class="stat-pill"           id="sp-solved" onclick="selStat('solved')">Solved</div>
-        </div>
-      </div>
-      <div class="grid2">
-        <div class="fg"><label>Deskripsi Case</label><textarea id="f-deskripsi" placeholder="Detail kendala..."></textarea></div>
-        <div class="fg"><label>Solusi / Tindakan</label><textarea id="f-solusi" placeholder="Tindakan yang sudah dilakukan..."></textarea></div>
-      </div>
     </div>
 
     <div class="section" style="padding:12px 20px;">
@@ -709,7 +709,7 @@ tr:hover td{background:#FAFAF8;}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <script>
-const API='https://script.google.com/macros/s/AKfycbw9b762DqTQM10_te10CblQ7jBbb0sjHrH6wY1Q5BGhxFfYyq3SXwrO3wGdSZ2xZwo/exec';
+const API='https://script.google.com/macros/s/AKfycbwuUByI0PkXygNpBvbcHchvWAuxuC2zxBoAvU21c6IZupaqtYnjAOFK4f2WZl9Q6D4/exec';
 let currentUser=null,allAreas=[],allBP=[],allCases=[],allLogs=[];
 let selectedCat='',selectedSev='',selectedStat='open',selectedScope='Branch',selectedRutinStat='prog';
 let currentTipe='noncase',logFilterStatus='semua',pendingFormData=null,lineChartInstance=null;
@@ -734,8 +734,8 @@ async function doLogin(){
     const res=await api({action:'login',id,pin});
     if(res.status==='ok'){
       currentUser={id:res.id,nama:res.nama};
-      document.getElementById('pic-name').textContent=res.nama;
-      document.getElementById('pic-av').textContent=res.nama.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase();
+      sessionStorage.setItem('sfa_user', JSON.stringify(currentUser));
+      setUserUI(res.nama);
       document.getElementById('page-login').classList.remove('active');
       document.getElementById('page-app').classList.add('active');
       await loadMasterData();
@@ -747,14 +747,34 @@ async function doLogin(){
   showLoading(false);
 }
 document.addEventListener('keydown',e=>{if(e.key==='Enter'&&document.getElementById('page-login').classList.contains('active'))doLogin();});
+function setUserUI(nama){
+  document.getElementById('pic-name').textContent=nama;
+  document.getElementById('pic-av').textContent=nama.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase();
+}
 function doLogout(){
   currentUser=null;
+  sessionStorage.removeItem('sfa_user');
   document.getElementById('page-app').classList.remove('active');
   document.getElementById('page-login').classList.add('active');
   document.getElementById('login-id').value='';
   document.getElementById('login-pin').value='';
   showTab('form',document.querySelector('.ntab'));
 }
+// Auto-restore session on page load/refresh
+window.addEventListener('load', async () => {
+  const saved = sessionStorage.getItem('sfa_user');
+  if(saved){
+    try{
+      currentUser = JSON.parse(saved);
+      setUserUI(currentUser.nama);
+      document.getElementById('page-login').classList.remove('active');
+      document.getElementById('page-app').classList.add('active');
+      await loadMasterData();
+      initForm();
+      loadNotifikasi();
+    }catch(e){ sessionStorage.removeItem('sfa_user'); }
+  }
+});
 
 // NOTIF
 async function loadNotifikasi(){
@@ -870,11 +890,27 @@ function setType(type){
   document.getElementById('btn-case').className='type-btn'+(type==='case'?' t-case':'');
   document.getElementById('case-sec').style.display=type==='case'?'block':'none';
   document.getElementById('noncase-status-sec').style.display=type==='noncase'?'block':'none';
-  document.getElementById('multi-wrap').style.display=(type==='case'&&selectedScope!=='Branch')?'block':'none';
+  // Scope: tampilkan checklist jika bukan Branch (berlaku untuk semua tipe)
+  const showMulti = selectedScope !== 'Branch';
+  document.getElementById('multi-wrap').style.display = showMulti ? 'block' : 'none';
   const badge=document.getElementById('bp-badge');
   badge.textContent=type==='noncase'?'Non Case':'Case / Masalah';
   badge.style.background=type==='noncase'?'var(--green-l)':'var(--bug-l)';
   badge.style.color=type==='noncase'?'var(--green-d)':'var(--bug-d)';
+  // Update section numbers
+  // Non Case: BP=2, Area=3, Status=4
+  // Case:     BP=2, Detail=3, Area=4, Status hidden
+  if(type==='noncase'){
+    if(document.getElementById('snum-bp'))         document.getElementById('snum-bp').textContent='2';
+    if(document.getElementById('snum-case-detail'))document.getElementById('snum-case-detail').textContent='3';
+    if(document.getElementById('snum-area'))       document.getElementById('snum-area').textContent='3';
+    if(document.getElementById('snum-status-nc'))  document.getElementById('snum-status-nc').textContent='4';
+  } else {
+    if(document.getElementById('snum-bp'))         document.getElementById('snum-bp').textContent='2';
+    if(document.getElementById('snum-case-detail'))document.getElementById('snum-case-detail').textContent='3';
+    if(document.getElementById('snum-area'))       document.getElementById('snum-area').textContent='4';
+    if(document.getElementById('snum-status-nc'))  document.getElementById('snum-status-nc').textContent='5';
+  }
   populateBPDropdown(type);
 }
 function populateBPDropdown(type){
