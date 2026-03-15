@@ -288,7 +288,6 @@ tr:hover td{background:#FAFAF8;}
 <body>
 <div class="toast" id="toast"></div>
 <div class="loading-overlay" id="loading"><div class="spinner"></div></div>
-
 <div class="modal-overlay" id="modal-confirm">
   <div class="modal-card">
     <div class="modal-title">Konfirmasi Simpan Log</div>
@@ -300,16 +299,12 @@ tr:hover td{background:#FAFAF8;}
     </div>
   </div>
 </div>
-
-<!-- LOGIN -->
 <div class="page active" id="page-login">
 <div class="login-bg">
   <div class="login-card">
     <div class="login-logo-row">
       <div class="logo-box">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 10l3 3 5-5"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 10l3 3 5-5"/></svg>
       </div>
       <div class="logo-brand">PT. Macrosentra Niagaboga</div>
       <div class="logo-company">Cimory Group</div>
@@ -324,16 +319,10 @@ tr:hover td{background:#FAFAF8;}
   </div>
 </div>
 </div>
-
-<!-- APP -->
 <div class="page" id="page-app">
   <div class="topbar">
     <div class="tb-left">
-      <div class="tb-logo">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
-          <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 10l3 3 5-5"/>
-        </svg>
-      </div>
+      <div class="tb-logo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 10l3 3 5-5"/></svg></div>
       <div><div class="tb-title">Activity & Case Tracker</div><div class="tb-company">PT. Macrosentra Niagaboga</div></div>
     </div>
     <div class="tb-right">
@@ -354,41 +343,22 @@ tr:hover td{background:#FAFAF8;}
     <div class="ntab" onclick="showTab('log',this)">Log Harian</div>
     <div class="ntab" onclick="showTab('dash',this)">Dashboard</div>
   </div>
-
-  <!-- FORM TAB -->
   <div id="tab-form" class="tab-content">
   <div class="fcontent">
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
-      <div>
-        <div style="font-size:11px;color:var(--muted);margin-bottom:4px;font-weight:600;">NOMOR OTOMATIS</div>
-        <div class="autonumber" id="autonumber">—</div>
-      </div>
-      <div style="font-size:12px;color:var(--muted);">Unik per region · reset tiap bulan · tidak bisa diubah</div>
+      <div><div style="font-size:11px;color:var(--muted);margin-bottom:4px;font-weight:600;">NOMOR OTOMATIS</div><div class="autonumber" id="autonumber">—</div></div>
+      <div style="font-size:12px;color:var(--muted);">Unik per region · reset tiap bulan</div>
     </div>
     <div class="section">
       <div class="sec-hdr"><div class="snum">1</div><div class="stitle">Informasi Dasar</div></div>
       <div class="grid3">
         <div class="fg"><label>Tanggal <span class="req">*</span></label><input type="date" id="f-tanggal"></div>
-        <div class="fg">
-          <label>User <span class="req">*</span></label>
-          <input type="text" id="f-user" placeholder="NAMA USER" oninput="this.value=this.value.toUpperCase()">
-          <div class="hint">Otomatis huruf kapital</div>
-        </div>
-        <div class="fg">
-          <label>Tipe Log <span class="req">*</span></label>
-          <div class="type-row">
-            <div class="type-btn t-noncase" id="btn-noncase" onclick="setType('noncase')">Non Case</div>
-            <div class="type-btn" id="btn-case" onclick="setType('case')">Case / Masalah</div>
-          </div>
-        </div>
+        <div class="fg"><label>User <span class="req">*</span></label><input type="text" id="f-user" placeholder="NAMA USER" oninput="this.value=this.value.toUpperCase()"><div class="hint">Otomatis huruf kapital</div></div>
+        <div class="fg"><label>Tipe Log <span class="req">*</span></label><div class="type-row"><div class="type-btn t-noncase" id="btn-noncase" onclick="setType('noncase')">Non Case</div><div class="type-btn" id="btn-case" onclick="setType('case')">Case / Masalah</div></div></div>
       </div>
     </div>
     <div class="section">
-      <div class="sec-hdr">
-        <div class="snum" id="snum-bp">2</div>
-        <div class="stitle">Business Process & Activity</div>
-        <span class="ssub" id="bp-badge" style="background:var(--green-l);color:var(--green-d);padding:3px 10px;border-radius:5px;font-size:11px;font-weight:600;">Non Case</span>
-      </div>
+      <div class="sec-hdr"><div class="snum" id="snum-bp">2</div><div class="stitle">Business Process & Activity</div><span class="ssub" id="bp-badge" style="background:var(--green-l);color:var(--green-d);padding:3px 10px;border-radius:5px;font-size:11px;font-weight:600;">Non Case</span></div>
       <div class="grid2" style="margin-bottom:12px;">
         <div class="fg"><label>Business Process <span class="req">*</span></label><select id="f-bp" onchange="onBPChange()"><option value="">— Pilih —</option></select></div>
         <div class="fg"><label>Activity <span class="req">*</span></label><select id="f-activity" onchange="onActivityChange()"><option value="">— Pilih BP dulu —</option></select></div>
@@ -399,36 +369,11 @@ tr:hover td{background:#FAFAF8;}
       <div class="sec-hdr"><div class="snum" id="snum-case-detail">3</div><div class="stitle">Detail Case</div><span class="ssub">Wajib untuk Case / Masalah</span></div>
       <div class="grid2" style="margin-bottom:12px;">
         <div class="fg"><label>Master Case <span class="req">*</span></label><select id="f-mastercase"><option value="">— Pilih —</option></select></div>
-        <div class="fg">
-          <label>Kategori <span class="req">*</span></label>
-          <div class="cat-row">
-            <div class="cat-pill" id="cp-bug"   onclick="selCat('bug')">Bug SFA</div>
-            <div class="cat-pill" id="cp-human" onclick="selCat('human')">Human Error</div>
-            <div class="cat-pill" id="cp-data"  onclick="selCat('data')">Data Issue</div>
-            <div class="cat-pill" id="cp-other" onclick="selCat('other')">Lainnya</div>
-          </div>
-        </div>
+        <div class="fg"><label>Kategori <span class="req">*</span></label><div class="cat-row"><div class="cat-pill" id="cp-bug" onclick="selCat('bug')">Bug SFA</div><div class="cat-pill" id="cp-human" onclick="selCat('human')">Human Error</div><div class="cat-pill" id="cp-data" onclick="selCat('data')">Data Issue</div><div class="cat-pill" id="cp-other" onclick="selCat('other')">Lainnya</div></div></div>
       </div>
-      <div class="fg" style="margin-bottom:12px;">
-        <label>Severity <span class="req">*</span></label>
-        <div class="sev-row">
-          <div class="sev-pill" id="sv-critical" onclick="selSev('critical')">🔴 Critical</div>
-          <div class="sev-pill" id="sv-high"     onclick="selSev('high')">🟠 High</div>
-          <div class="sev-pill" id="sv-medium"   onclick="selSev('medium')">🟢 Medium</div>
-        </div>
-      </div>
-      <div class="fg" style="margin-bottom:12px;">
-        <label>Status</label>
-        <div class="stat-row">
-          <div class="stat-pill sp-open" id="sp-open"   onclick="selStat('open')">Open</div>
-          <div class="stat-pill"         id="sp-prog"   onclick="selStat('prog')">In Progress</div>
-          <div class="stat-pill"         id="sp-solved" onclick="selStat('solved')">Solved</div>
-        </div>
-      </div>
-      <div class="grid2">
-        <div class="fg"><label>Deskripsi Case</label><textarea id="f-deskripsi" placeholder="Detail kendala..."></textarea></div>
-        <div class="fg"><label>Solusi / Tindakan</label><textarea id="f-solusi" placeholder="Tindakan yang sudah dilakukan..."></textarea></div>
-      </div>
+      <div class="fg" style="margin-bottom:12px;"><label>Severity <span class="req">*</span></label><div class="sev-row"><div class="sev-pill" id="sv-critical" onclick="selSev('critical')">🔴 Critical</div><div class="sev-pill" id="sv-high" onclick="selSev('high')">🟠 High</div><div class="sev-pill" id="sv-medium" onclick="selSev('medium')">🟢 Medium</div></div></div>
+      <div class="fg" style="margin-bottom:12px;"><label>Status</label><div class="stat-row"><div class="stat-pill sp-open" id="sp-open" onclick="selStat('open')">Open</div><div class="stat-pill" id="sp-prog" onclick="selStat('prog')">In Progress</div><div class="stat-pill" id="sp-solved" onclick="selStat('solved')">Solved</div></div></div>
+      <div class="grid2"><div class="fg"><label>Deskripsi Case</label><textarea id="f-deskripsi" placeholder="Detail kendala..."></textarea></div><div class="fg"><label>Solusi / Tindakan</label><textarea id="f-solusi" placeholder="Tindakan yang sudah dilakukan..."></textarea></div></div>
     </div>
     <div class="section">
       <div class="sec-hdr"><div class="snum" id="snum-area">3</div><div class="stitle">Area</div><span class="ssub">Pilih area → Region & Entity otomatis</span></div>
@@ -436,35 +381,19 @@ tr:hover td{background:#FAFAF8;}
         <div class="fg">
           <label>Branch / Area Utama <span class="req">*</span></label>
           <select id="f-area" onchange="onAreaChange()"><option value="">— Pilih Area —</option></select>
-          <div class="mapping-badge">
-            <div class="mbadge">Region: <span id="auto-region">—</span></div>
-            <div class="mbadge">Entity: <span id="auto-entity">—</span></div>
-          </div>
+          <div class="mapping-badge"><div class="mbadge">Region: <span id="auto-region">—</span></div><div class="mbadge">Entity: <span id="auto-entity">—</span></div></div>
         </div>
         <div class="fg">
           <label>Scope Dampak</label>
-          <div class="scope-row">
-            <div class="scope-pill sc-active" id="sc-branch"   onclick="setScope('Branch',this)">Branch</div>
-            <div class="scope-pill"           id="sc-entity"   onclick="setScope('Entity',this)">Entity</div>
-            <div class="scope-pill"           id="sc-region"   onclick="setScope('Region',this)">Region</div>
-            <div class="scope-pill"           id="sc-nasional" onclick="setScope('Nasional',this)">Nasional</div>
-          </div>
-          <div style="margin-top:8px;">
-            <div style="font-size:11px;color:var(--muted);margin-bottom:3px;font-weight:600;">VALUE (jumlah area terdampak)</div>
-            <div class="value-display" id="value-display">1</div>
-          </div>
+          <div class="scope-row"><div class="scope-pill sc-active" id="sc-branch" onclick="setScope('Branch',this)">Branch</div><div class="scope-pill" id="sc-entity" onclick="setScope('Entity',this)">Entity</div><div class="scope-pill" id="sc-region" onclick="setScope('Region',this)">Region</div><div class="scope-pill" id="sc-nasional" onclick="setScope('Nasional',this)">Nasional</div></div>
+          <div style="margin-top:8px;"><div style="font-size:11px;color:var(--muted);margin-bottom:3px;font-weight:600;">VALUE (jumlah area terdampak)</div><div class="value-display" id="value-display">1</div></div>
         </div>
       </div>
       <div id="multi-wrap" style="display:none;margin-top:14px;">
         <label style="display:block;margin-bottom:8px;">Area Terdampak <span style="color:var(--bug-d);font-size:10px;">(checklist)</span></label>
         <div class="area-checklist-wrap">
           <div class="area-checklist-filter">
-            <select id="ck-region" onchange="onCkRegionChange()">
-              <option value="">Semua Region</option>
-              <option value="GT-1">GT-1</option>
-              <option value="GT-2">GT-2</option>
-              <option value="GT-3">GT-3</option>
-            </select>
+            <select id="ck-region" onchange="onCkRegionChange()"><option value="">Semua Region</option><option value="GT-1">GT-1</option><option value="GT-2">GT-2</option><option value="GT-3">GT-3</option></select>
             <select id="ck-entity" onchange="renderChecklist()"><option value="">Semua Entity</option></select>
             <button onclick="checkAll()">✓ Pilih Semua</button>
             <button onclick="uncheckAll()">✗ Hapus Semua</button>
@@ -476,25 +405,12 @@ tr:hover td{background:#FAFAF8;}
     </div>
     <div class="section" id="noncase-status-sec">
       <div class="sec-hdr"><div class="snum" id="snum-status-nc">4</div><div class="stitle">Status Aktivitas</div></div>
-      <div class="fg">
-        <label>Status <span class="req">*</span></label>
-        <div class="stat-row">
-          <div class="stat-pill sp-prog"    id="rsp-prog"    onclick="selRutinStat('prog')">In Progress</div>
-          <div class="stat-pill sp-selesai" id="rsp-selesai" onclick="selRutinStat('selesai')">Selesai</div>
-        </div>
-      </div>
+      <div class="fg"><label>Status <span class="req">*</span></label><div class="stat-row"><div class="stat-pill sp-prog" id="rsp-prog" onclick="selRutinStat('prog')">In Progress</div><div class="stat-pill sp-selesai" id="rsp-selesai" onclick="selRutinStat('selesai')">Selesai</div></div></div>
       <div class="fg" style="margin-top:12px;"><label>Keterangan (opsional)</label><textarea id="f-rutin-ket" placeholder="Catatan tambahan..."></textarea></div>
     </div>
-    <div class="section" style="padding:12px 20px;">
-      <div class="submit-row">
-        <button class="btn-cancel" onclick="resetForm()">Reset</button>
-        <button class="btn-save" onclick="showConfirm()">Simpan Log</button>
-      </div>
-    </div>
+    <div class="section" style="padding:12px 20px;"><div class="submit-row"><button class="btn-cancel" onclick="resetForm()">Reset</button><button class="btn-save" onclick="showConfirm()">Simpan Log</button></div></div>
   </div>
   </div>
-
-  <!-- LOG HARIAN TAB -->
   <div id="tab-log" class="tab-content" style="display:none;">
   <div class="lc">
     <div class="fbar">
@@ -504,73 +420,37 @@ tr:hover td{background:#FAFAF8;}
       <button class="fbtn" onclick="filterLog('Solved',this)">Solved</button>
       <button class="fbtn" onclick="filterLog('Selesai',this)">Selesai</button>
       <button class="fbtn" onclick="filterLog('Escalated',this)">Escalated</button>
-      <select class="fsel" id="log-kat" onchange="renderLogTable()">
-        <option value="semua">Semua Kategori</option>
-        <option value="Bug SFA">Bug SFA</option>
-        <option value="Human Error">Human Error</option>
-        <option value="Data Issue">Data Issue</option>
-        <option value="Lainnya">Lainnya</option>
-        <option value="">Non Case</option>
-      </select>
+      <select class="fsel" id="log-kat" onchange="renderLogTable()"><option value="semua">Semua Kategori</option><option value="Bug SFA">Bug SFA</option><option value="Human Error">Human Error</option><option value="Data Issue">Data Issue</option><option value="Lainnya">Lainnya</option><option value="">Non Case</option></select>
       <select class="fsel" id="log-pic" onchange="renderLogTable()"><option value="semua">Semua PIC</option></select>
       <input class="finput" type="text" id="log-search" placeholder="🔍 Cari keyword..." oninput="renderLogTable()">
-      <div class="fright">
-        <button class="expbtn" onclick="exportCSV()">📥 CSV</button>
-        <button class="expbtn" onclick="exportExcel()">📊 Excel</button>
-      </div>
+      <div class="fright"><button class="expbtn" onclick="exportCSV()">📥 CSV</button><button class="expbtn" onclick="exportExcel()">📊 Excel</button></div>
     </div>
-    <div class="tw">
-      <table>
-        <thead><tr><th>No</th><th>Tgl</th><th>Case / Aktivitas</th><th>Area</th><th>User</th><th>Kategori</th><th>Severity</th><th>Scope</th><th>Value</th><th>Status</th><th>Durasi</th><th>Aksi</th></tr></thead>
-        <tbody id="log-tbody"></tbody>
-      </table>
-    </div>
+    <div class="tw"><table><thead><tr><th>No</th><th>Tgl</th><th>Case / Aktivitas</th><th>Area</th><th>User</th><th>Kategori</th><th>Severity</th><th>Scope</th><th>Value</th><th>Status</th><th>Durasi</th><th>Aksi</th></tr></thead><tbody id="log-tbody"></tbody></table></div>
   </div>
   </div>
-
-  <!-- DASHBOARD TAB -->
   <div id="tab-dash" class="tab-content" style="display:none;">
   <div class="dc">
-    <div class="dheader">
-      <div class="dh-title">📊 Dashboard</div>
-      <button class="expbtn-pdf" onclick="exportDashPDF()">🖨 Export PDF</button>
-    </div>
+    <div class="dheader"><div class="dh-title">📊 Dashboard</div><button class="expbtn-pdf" onclick="exportDashPDF()">🖨 Export PDF</button></div>
     <div class="dfilter-panel">
-      <div class="dfilter-group">
-        <div class="dfilter-label">Region</div>
-        <select id="dash-region" onchange="onDashRegionChange()">
-          <option value="semua">Semua Region</option>
-          <option value="GT-1">GT-1</option>
-          <option value="GT-2">GT-2</option>
-          <option value="GT-3">GT-3</option>
-        </select>
-      </div>
-      <div class="dfilter-group">
-        <div class="dfilter-label">Entity</div>
-        <select id="dash-entity"><option value="semua">Semua Entity</option></select>
-      </div>
-      <div class="dfilter-group">
-        <div class="dfilter-label">Range Tanggal</div>
-        <div class="date-range">
-          <input type="date" id="dash-dari"><span>s/d</span><input type="date" id="dash-sampai">
-        </div>
-      </div>
+      <div class="dfilter-group"><div class="dfilter-label">Region</div><select id="dash-region" onchange="onDashRegionChange()"><option value="semua">Semua Region</option><option value="GT-1">GT-1</option><option value="GT-2">GT-2</option><option value="GT-3">GT-3</option></select></div>
+      <div class="dfilter-group"><div class="dfilter-label">Entity</div><select id="dash-entity"><option value="semua">Semua Entity</option></select></div>
+      <div class="dfilter-group"><div class="dfilter-label">Range Tanggal</div><div class="date-range"><input type="date" id="dash-dari"><span>s/d</span><input type="date" id="dash-sampai"></div></div>
       <button class="btn-tampilkan" onclick="loadDashboard()">Tampilkan</button>
     </div>
     <div style="font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Case / Bermasalah</div>
     <div class="stats-grid" style="margin-bottom:6px;">
-      <div class="stat s-case"><div class="slbl">Total Case</div><div class="sval" id="d-total">—</div><div class="ssub" id="d-total-pending" style="color:var(--human);font-weight:500;">Pending: —</div><span class="stag case">Case / Bermasalah</span></div>
-      <div class="stat s-bug"><div class="slbl">Bug SFA</div><div class="sval" id="d-bug">—</div><div class="ssub" id="d-bug-pending" style="color:var(--human);font-weight:500;">Pending: —</div><span class="stag case">Case / Bermasalah</span></div>
-      <div class="stat s-human"><div class="slbl">Human Error</div><div class="sval" id="d-human">—</div><div class="ssub" id="d-human-pending" style="color:var(--human);font-weight:500;">Pending: —</div><span class="stag case">Case / Bermasalah</span></div>
+      <div class="stat s-case"><div class="slbl">Total Case</div><div class="sval" id="d-total">—</div><div class="ssub" id="d-total-pending" style="color:var(--human);font-weight:500;">Pending: —</div><span class="stag case">Case</span></div>
+      <div class="stat s-bug"><div class="slbl">Bug SFA</div><div class="sval" id="d-bug">—</div><div class="ssub" id="d-bug-pending" style="color:var(--human);font-weight:500;">Pending: —</div><span class="stag case">Case</span></div>
+      <div class="stat s-human"><div class="slbl">Human Error</div><div class="sval" id="d-human">—</div><div class="ssub" id="d-human-pending" style="color:var(--human);font-weight:500;">Pending: —</div><span class="stag case">Case</span></div>
     </div>
     <div class="stats-grid" style="margin-bottom:14px;">
-      <div class="stat s-data"><div class="slbl">Data Issue</div><div class="sval" id="d-data">—</div><div class="ssub" id="d-data-pending" style="color:var(--human);font-weight:500;">Pending: —</div><span class="stag case">Case / Bermasalah</span></div>
-      <div class="stat s-other"><div class="slbl">Lainnya</div><div class="sval" id="d-other">—</div><div class="ssub" id="d-other-pending" style="color:var(--human);font-weight:500;">Pending: —</div><span class="stag case">Case / Bermasalah</span></div>
+      <div class="stat s-data"><div class="slbl">Data Issue</div><div class="sval" id="d-data">—</div><div class="ssub" id="d-data-pending" style="color:var(--human);font-weight:500;">Pending: —</div><span class="stag case">Case</span></div>
+      <div class="stat s-other"><div class="slbl">Lainnya</div><div class="sval" id="d-other">—</div><div class="ssub" id="d-other-pending" style="color:var(--human);font-weight:500;">Pending: —</div><span class="stag case">Case</span></div>
       <div class="stat s-noncase"><div class="slbl">Non Case</div><div class="sval" id="d-noncase">—</div><div class="ssub">aktivitas selesai</div><span class="stag noncase">Non Case</span></div>
     </div>
     <div id="dash-alert"></div>
     <div class="dcard" style="margin-bottom:14px;">
-      <div class="dtitle"><div class="dtitle-dot" style="background:var(--accent)"></div>Tren Case Solved — 6 Bulan (Total Value)</div>
+      <div class="dtitle"><div class="dtitle-dot" style="background:var(--accent)"></div>Tren Case Solved — 6 Bulan</div>
       <div class="line-chart-wrap"><canvas id="lineChart"></canvas></div>
       <div style="display:flex;gap:16px;margin-top:12px;flex-wrap:wrap;">
         <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)"><div style="width:20px;height:3px;background:var(--bug);border-radius:2px"></div>Bug SFA</div>
@@ -582,12 +462,8 @@ tr:hover td{background:#FAFAF8;}
     </div>
     <div class="dash-row col2">
       <div class="dcard">
-        <div class="dtitle"><div class="dtitle-dot" style="background:var(--green)"></div>Range Waktu Solved — Total Value</div>
-        <div class="range-row">
-          <div class="rcard r1"><div class="rnum" id="r1">—</div><div class="rlbl">1–3 hari</div></div>
-          <div class="rcard r2"><div class="rnum" id="r2">—</div><div class="rlbl">4–7 hari</div></div>
-          <div class="rcard r3"><div class="rnum" id="r3">—</div><div class="rlbl">&gt;7 hari</div></div>
-        </div>
+        <div class="dtitle"><div class="dtitle-dot" style="background:var(--green)"></div>Range Waktu Solved</div>
+        <div class="range-row"><div class="rcard r1"><div class="rnum" id="r1">—</div><div class="rlbl">1–3 hari</div></div><div class="rcard r2"><div class="rnum" id="r2">—</div><div class="rlbl">4–7 hari</div></div><div class="rcard r3"><div class="rnum" id="r3">—</div><div class="rlbl">&gt;7 hari</div></div></div>
         <div style="font-size:11px;color:var(--muted);font-weight:600;">Total value solved: <span id="total-solved" style="font-family:var(--mono);color:var(--text);font-size:14px">—</span></div>
       </div>
       <div class="dcard">
@@ -598,31 +474,28 @@ tr:hover td{background:#FAFAF8;}
         <div class="brow"><div class="blbl">Lainnya</div><div class="btrack"><div class="bfill" id="avg-other-bar" style="width:0%;background:var(--other)"><span id="avg-other">—</span></div></div></div>
       </div>
     </div>
-    <div class="dcard" style="margin-bottom:14px;">
-      <div class="dtitle"><div class="dtitle-dot" style="background:var(--other)"></div>Perbandingan Bulan Ini vs Bulan Lalu (Value)</div>
-      <div class="compare-grid" id="compare-chart"></div>
-    </div>
+    <div class="dcard" style="margin-bottom:14px;"><div class="dtitle"><div class="dtitle-dot" style="background:var(--other)"></div>Perbandingan Bulan Ini vs Bulan Lalu</div><div class="compare-grid" id="compare-chart"></div></div>
   </div>
   </div>
 </div>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <script>
-// ============================================================
-// FIX CORS: ganti fetch() dengan google.script.run
-// ============================================================
-function api(params) {
-  return new Promise((resolve, reject) => {
-    google.script.run
-      .withSuccessHandler(result => resolve(result))
-      .withFailureHandler(err => reject(new Error(err.message || JSON.stringify(err))))
-      .handleRequestFromClient(params);
-  });
+// =============================================
+// GANTI URL INI DENGAN URL DEPLOYMENT TERBARU
+// =============================================
+const API = 'const API = 'https://script.google.com/macros/s/AKfycbydR2myVBTyDQl95ULzxNa-RtWuZAGHfe7p4Ed1vyvc3SWG3rUH89yq4QlVSBJau1c/exec';';
+
+async function api(params) {
+  const url = API + '?' + new URLSearchParams(params);
+  const res = await fetch(url, {redirect:'follow'});
+  const text = await res.text();
+  try { return JSON.parse(text); }
+  catch(e) { throw new Error('Response bukan JSON: ' + text.substring(0,200)); }
 }
 
-let currentUser=null, allAreas=[], allBP=[], allCases=[], allLogs=[];
-let selectedCat='', selectedSev='', selectedStat='open', selectedScope='Branch', selectedRutinStat='prog';
-let currentTipe='noncase', logFilterStatus='semua', pendingFormData=null, lineChartInstance=null;
+let currentUser=null,allAreas=[],allBP=[],allCases=[],allLogs=[];
+let selectedCat='',selectedSev='',selectedStat='open',selectedScope='Branch',selectedRutinStat='prog';
+let currentTipe='noncase',logFilterStatus='semua',pendingFormData=null,lineChartInstance=null;
 const BP_NONCASE=['MMD','MAP','RPS','SRV','DEV'];
 const BP_CASE=['TRB','NDG','NCD','RPT','NSD','NCR','NAP','NAV'];
 
@@ -631,7 +504,6 @@ function showLoading(v){document.getElementById('loading').classList.toggle('sho
 function today(){return new Date().toISOString().split('T')[0];}
 function formatTgl(d){if(!d)return'—';const s=String(d).split('T')[0].split('-');return s.length<3?String(d):`${s[2]}/${s[1]}/${s[0]}`;}
 
-// LOGIN
 async function doLogin(){
   const id=document.getElementById('login-id').value.trim();
   const pin=document.getElementById('login-pin').value.trim();
@@ -646,8 +518,7 @@ async function doLogin(){
       document.getElementById('page-login').classList.remove('active');
       document.getElementById('page-app').classList.add('active');
       await loadMasterData();
-      initForm();
-      loadNotifikasi();
+      initForm();loadNotifikasi();
       showToast('Selamat datang, '+res.nama,'success');
     }else showToast(res.message||'Login gagal','error');
   }catch(e){showToast('Koneksi gagal: '+e.message,'error');}
@@ -680,7 +551,6 @@ window.addEventListener('load',async()=>{
   }
 });
 
-// NOTIFIKASI
 async function loadNotifikasi(){
   try{const res=await api({action:'getNotifikasi'});if(res.status==='ok')renderNotifikasi(res.data,res.count);}catch(e){}
 }
@@ -689,21 +559,12 @@ function renderNotifikasi(data,count){
   badge.textContent=count;badge.classList.toggle('show',count>0);
   document.getElementById('notif-list').innerHTML=!data.length
     ?'<div class="notif-empty">✅ Tidak ada notifikasi</div>'
-    :data.map(n=>`<div class="notif-item" onclick="goToCase('${n.no}')">
-        <div class="notif-case">${n.case||'—'}</div>
-        <div class="notif-meta">${n.area} · ${n.status}</div>
-        <div class="notif-hari">⏰ Belum diupdate ${n.hari} hari</div>
-      </div>`).join('');
+    :data.map(n=>`<div class="notif-item" onclick="goToCase('${n.no}')"><div class="notif-case">${n.case||'—'}</div><div class="notif-meta">${n.area} · ${n.status}</div><div class="notif-hari">⏰ Belum diupdate ${n.hari} hari</div></div>`).join('');
 }
 function toggleNotif(){document.getElementById('notif-dropdown').classList.toggle('show');}
-function goToCase(no){
-  document.getElementById('notif-dropdown').classList.remove('show');
-  showTab('log',document.querySelectorAll('.ntab')[1]);
-  setTimeout(()=>{document.getElementById('log-search').value=no;renderLogTable();},500);
-}
+function goToCase(no){document.getElementById('notif-dropdown').classList.remove('show');showTab('log',document.querySelectorAll('.ntab')[1]);setTimeout(()=>{document.getElementById('log-search').value=no;renderLogTable();},500);}
 document.addEventListener('click',e=>{if(!document.getElementById('notif-wrap').contains(e.target))document.getElementById('notif-dropdown').classList.remove('show');});
 
-// MASTER DATA — parallel load
 async function loadMasterData(){
   showLoading(true);
   try{
@@ -714,16 +575,13 @@ async function loadMasterData(){
   showLoading(false);
 }
 function populateAreaDropdown(){
-  const sel=document.getElementById('f-area');
-  sel.innerHTML='<option value="">— Pilih Area —</option>'+allAreas.map(a=>
-    `<option value="${a.kode}" data-area="${a.area}" data-entity="${a.entity}" data-region="${a.region}">${a.area}</option>`).join('');
+  document.getElementById('f-area').innerHTML='<option value="">— Pilih Area —</option>'+allAreas.map(a=>`<option value="${a.kode}" data-area="${a.area}" data-entity="${a.entity}" data-region="${a.region}">${a.area}</option>`).join('');
 }
 function populateDashEntity(){
   const entities=[...new Set(allAreas.map(a=>a.entity).filter(Boolean))].sort();
   document.getElementById('dash-entity').innerHTML='<option value="semua">Semua Entity</option>'+entities.map(e=>`<option value="${e}">${e}</option>`).join('');
 }
 
-// CHECKLIST AREA
 let checkedAreas=new Set();
 function onCkRegionChange(){
   const region=document.getElementById('ck-region').value;
@@ -732,50 +590,23 @@ function onCkRegionChange(){
   renderChecklist();
 }
 function renderChecklist(){
-  const region=document.getElementById('ck-region').value;
-  const entity=document.getElementById('ck-entity').value;
+  const region=document.getElementById('ck-region').value,entity=document.getElementById('ck-entity').value;
   const mainArea=document.getElementById('f-area');
   const mainVal=mainArea.options[mainArea.selectedIndex]?.dataset?.area||'';
   const filtered=allAreas.filter(a=>(!region||a.region===region)&&(!entity||a.entity===entity));
   document.getElementById('ck-list').innerHTML=filtered.map(a=>{
-    const isMain=a.area===mainVal;
-    const isChecked=isMain||checkedAreas.has(a.area);
-    return `<div class="area-check-item${isChecked?' checked':''}" onclick="${isMain?'':'toggleCheck(this,\''+a.area+'\')'}">
-      <input type="checkbox" ${isChecked?'checked':''} ${isMain?'disabled':''} onchange="if(!this.disabled)toggleCheckInput(this,'${a.area}')">
-      <span>${a.area}</span>${isMain?'<span style="font-size:10px;color:var(--accent-d);margin-left:4px;">(utama)</span>':''}
-    </div>`;
+    const isMain=a.area===mainVal,isChecked=isMain||checkedAreas.has(a.area);
+    return `<div class="area-check-item${isChecked?' checked':''}" onclick="${isMain?'':'toggleCheck(this,\''+a.area+'\')'}"><input type="checkbox" ${isChecked?'checked':''} ${isMain?'disabled':''} onchange="if(!this.disabled)toggleCheckInput(this,'${a.area}')"><span>${a.area}</span>${isMain?'<span style="font-size:10px;color:var(--accent-d);margin-left:4px;">(utama)</span>':''}</div>`;
   }).join('');
   updateCkCount();
 }
-function toggleCheck(el,area){
-  if(checkedAreas.has(area)){checkedAreas.delete(area);el.classList.remove('checked');el.querySelector('input').checked=false;}
-  else{checkedAreas.add(area);el.classList.add('checked');el.querySelector('input').checked=true;}
-  updateCkCount();updateValue();
-}
-function toggleCheckInput(inp,area){
-  if(inp.checked){checkedAreas.add(area);inp.closest('.area-check-item').classList.add('checked');}
-  else{checkedAreas.delete(area);inp.closest('.area-check-item').classList.remove('checked');}
-  updateCkCount();updateValue();
-}
-function checkAll(){
-  const region=document.getElementById('ck-region').value;
-  const entity=document.getElementById('ck-entity').value;
-  allAreas.filter(a=>(!region||a.region===region)&&(!entity||a.entity===entity)).forEach(a=>checkedAreas.add(a.area));
-  renderChecklist();updateValue();
-}
-function uncheckAll(){
-  const region=document.getElementById('ck-region').value;
-  const entity=document.getElementById('ck-entity').value;
-  allAreas.filter(a=>(!region||a.region===region)&&(!entity||a.entity===entity)).forEach(a=>checkedAreas.delete(a.area));
-  renderChecklist();updateValue();
-}
+function toggleCheck(el,area){if(checkedAreas.has(area)){checkedAreas.delete(area);el.classList.remove('checked');el.querySelector('input').checked=false;}else{checkedAreas.add(area);el.classList.add('checked');el.querySelector('input').checked=true;}updateCkCount();updateValue();}
+function toggleCheckInput(inp,area){if(inp.checked){checkedAreas.add(area);inp.closest('.area-check-item').classList.add('checked');}else{checkedAreas.delete(area);inp.closest('.area-check-item').classList.remove('checked');}updateCkCount();updateValue();}
+function checkAll(){const r=document.getElementById('ck-region').value,e=document.getElementById('ck-entity').value;allAreas.filter(a=>(!r||a.region===r)&&(!e||a.entity===e)).forEach(a=>checkedAreas.add(a.area));renderChecklist();updateValue();}
+function uncheckAll(){const r=document.getElementById('ck-region').value,e=document.getElementById('ck-entity').value;allAreas.filter(a=>(!r||a.region===r)&&(!e||a.entity===e)).forEach(a=>checkedAreas.delete(a.area));renderChecklist();updateValue();}
 function updateCkCount(){document.getElementById('ck-count').textContent=checkedAreas.size+' area dipilih';}
 
-// FORM
-function initForm(){
-  const inp=document.getElementById('f-tanggal');inp.value=today();inp.max=today();
-  setType('noncase');setScope('Branch',document.getElementById('sc-branch'));selStat('open');selRutinStat('prog');
-}
+function initForm(){const inp=document.getElementById('f-tanggal');inp.value=today();inp.max=today();setType('noncase');setScope('Branch',document.getElementById('sc-branch'));selStat('open');selRutinStat('prog');}
 function setType(type){
   currentTipe=type;
   document.getElementById('btn-noncase').className='type-btn'+(type==='noncase'?' t-noncase':'');
@@ -786,7 +617,6 @@ function setType(type){
   document.querySelectorAll('.scope-pill').forEach(p=>p.classList.remove('sc-active'));
   document.getElementById('sc-branch').classList.add('sc-active');
   document.getElementById('multi-wrap').style.display='none';
-  // FIX: id adalah value-display, bukan bobot-display
   document.getElementById('value-display').textContent='1';
   const badge=document.getElementById('bp-badge');
   badge.textContent=type==='noncase'?'Non Case':'Case / Masalah';
@@ -812,25 +642,18 @@ function onBPChange(){
   const acts=allBP.filter(b=>b.kode===kode);
   document.getElementById('f-activity').innerHTML='<option value="">— Pilih Activity —</option>'+acts.map(a=>`<option value="${a.activity}" data-del="${a.deliverable}">${a.activity}</option>`).join('');
   document.getElementById('f-deliverable').textContent='— pilih activity —';
-  if(currentTipe==='case'){
-    const cases=allCases.filter(c=>c.kode===kode);
-    document.getElementById('f-mastercase').innerHTML='<option value="">— Pilih —</option>'+cases.map(c=>`<option value="${c.case}">${c.case}</option>`).join('');
-  }
+  if(currentTipe==='case'){const cases=allCases.filter(c=>c.kode===kode);document.getElementById('f-mastercase').innerHTML='<option value="">— Pilih —</option>'+cases.map(c=>`<option value="${c.case}">${c.case}</option>`).join('');}
 }
-function onActivityChange(){
-  const opt=document.getElementById('f-activity').options[document.getElementById('f-activity').selectedIndex];
-  document.getElementById('f-deliverable').textContent=opt?.dataset?.del||'—';
-}
+function onActivityChange(){const opt=document.getElementById('f-activity').options[document.getElementById('f-activity').selectedIndex];document.getElementById('f-deliverable').textContent=opt?.dataset?.del||'—';}
 function onAreaChange(){
-  const sel=document.getElementById('f-area');const opt=sel.options[sel.selectedIndex];
+  const sel=document.getElementById('f-area'),opt=sel.options[sel.selectedIndex];
   document.getElementById('auto-region').textContent=opt?.dataset?.region||'—';
   document.getElementById('auto-entity').textContent=opt?.dataset?.entity||'—';
-  checkedAreas.clear();
-  if(selectedScope!=='Branch')autoCheckByScope(selectedScope);
+  checkedAreas.clear();if(selectedScope!=='Branch')autoCheckByScope(selectedScope);
   renderChecklist();updateValue();
 }
 function autoCheckByScope(scope){
-  const sel=document.getElementById('f-area');const opt=sel.options[sel.selectedIndex];
+  const sel=document.getElementById('f-area'),opt=sel.options[sel.selectedIndex];
   if(!opt||!opt.value)return;
   const region=opt.dataset.region,entity=opt.dataset.entity;
   checkedAreas.clear();
@@ -846,48 +669,30 @@ function setScope(scope,el){
   else{document.getElementById('multi-wrap').style.display='block';autoCheckByScope(scope);renderChecklist();}
   updateValue();
 }
-// FIX: value = jumlah area (1 per area), konsisten dengan backend
 function updateValue(){
-  const mainArea=document.getElementById('f-area');
-  const mainVal=mainArea.options[mainArea.selectedIndex]?.dataset?.area;
+  const mainArea=document.getElementById('f-area'),mainVal=mainArea.options[mainArea.selectedIndex]?.dataset?.area;
   let jml;
-  if(selectedScope==='Branch'){jml=1;}
-  else{const all=new Set(checkedAreas);if(mainVal)all.add(mainVal);jml=Math.max(all.size,1);}
+  if(selectedScope==='Branch'){jml=1;}else{const all=new Set(checkedAreas);if(mainVal)all.add(mainVal);jml=Math.max(all.size,1);}
   document.getElementById('value-display').textContent=jml;
 }
-function selCat(type){
-  selectedCat=type==='bug'?'Bug SFA':type==='human'?'Human Error':type==='data'?'Data Issue':'Lainnya';
-  ['bug','human','data','other'].forEach(t=>{document.getElementById('cp-'+t).className='cat-pill'+(t===type?' c-'+t:'');});
-}
-function selSev(type){
-  selectedSev=type==='critical'?'Critical':type==='high'?'High':'Medium';
-  ['critical','high','medium'].forEach(t=>{document.getElementById('sv-'+t).className='sev-pill'+(t===type?' sv-'+t:'');});
-}
-function selStat(type){
-  selectedStat=type==='open'?'Open':type==='prog'?'In Progress':'Solved';
-  ['open','prog','solved'].forEach(t=>{document.getElementById('sp-'+t).className='stat-pill'+(t===type?' sp-'+t:'');});
-}
-function selRutinStat(type){
-  selectedRutinStat=type;
-  document.getElementById('rsp-prog').className='stat-pill'+(type==='prog'?' sp-prog':'');
-  document.getElementById('rsp-selesai').className='stat-pill'+(type==='selesai'?' sp-selesai':'');
-}
+function selCat(type){selectedCat=type==='bug'?'Bug SFA':type==='human'?'Human Error':type==='data'?'Data Issue':'Lainnya';['bug','human','data','other'].forEach(t=>{document.getElementById('cp-'+t).className='cat-pill'+(t===type?' c-'+t:'');});}
+function selSev(type){selectedSev=type==='critical'?'Critical':type==='high'?'High':'Medium';['critical','high','medium'].forEach(t=>{document.getElementById('sv-'+t).className='sev-pill'+(t===type?' sv-'+t:'');});}
+function selStat(type){selectedStat=type==='open'?'Open':type==='prog'?'In Progress':'Solved';['open','prog','solved'].forEach(t=>{document.getElementById('sp-'+t).className='stat-pill'+(t===type?' sp-'+t:'');});}
+function selRutinStat(type){selectedRutinStat=type;document.getElementById('rsp-prog').className='stat-pill'+(type==='prog'?' sp-prog':'');document.getElementById('rsp-selesai').className='stat-pill'+(type==='selesai'?' sp-selesai':'');}
 
-// SIMPAN
 function showConfirm(){
   const tanggal=document.getElementById('f-tanggal').value;
-  const areaSel=document.getElementById('f-area');const areaOpt=areaSel.options[areaSel.selectedIndex];
-  const bp=document.getElementById('f-bp').value;const activity=document.getElementById('f-activity').value;
+  const areaSel=document.getElementById('f-area'),areaOpt=areaSel.options[areaSel.selectedIndex];
+  const bp=document.getElementById('f-bp').value,activity=document.getElementById('f-activity').value;
   const user=document.getElementById('f-user').value.trim();
   if(!tanggal||!areaSel.value||!bp||!activity){showToast('Lengkapi field wajib (*)','error');return;}
   if(!user){showToast('User wajib diisi','error');return;}
   if(currentTipe==='case'&&!selectedCat){showToast('Pilih Kategori Case','error');return;}
-  if(currentTipe==='case'&&!selectedSev){showToast('Pilih Severity terlebih dahulu','error');return;}
+  if(currentTipe==='case'&&!selectedSev){showToast('Pilih Severity','error');return;}
   const mainAreaName=areaOpt?.dataset?.area||areaSel.value;
   const allSelected=new Set(checkedAreas);allSelected.add(mainAreaName);
   const allAreaList=selectedScope==='Branch'?[mainAreaName]:[...allSelected];
-  const jmlArea=allAreaList.length;
-  const value=jmlArea; // FIX: 1 per area, tanpa multiplier
+  const jmlArea=allAreaList.length,value=jmlArea;
   const statusVal=currentTipe==='noncase'?(selectedRutinStat==='selesai'?'Selesai':'In Progress'):(selectedStat==='open'?'Open':selectedStat==='prog'?'In Progress':'Solved');
   pendingFormData={
     pic:currentUser.nama,region:areaOpt?.dataset?.region||'',entity:areaOpt?.dataset?.entity||'',
@@ -930,7 +735,6 @@ function resetForm(){
   setType('noncase');setScope('Branch',document.getElementById('sc-branch'));selStat('open');selRutinStat('prog');
 }
 
-// LOG HARIAN — FIX: return Promise
 function loadLogs(){
   showLoading(true);
   return api({action:'getLogs',status:'semua',kategori:'semua',region:'semua'})
@@ -938,13 +742,10 @@ function loadLogs(){
     .catch(e=>showToast('Gagal load log: '+e.message,'error'))
     .finally(()=>showLoading(false));
 }
-function populatePICFilter(){
-  const pics=[...new Set(allLogs.map(l=>l.pic).filter(Boolean))].sort();
-  document.getElementById('log-pic').innerHTML='<option value="semua">Semua PIC</option>'+pics.map(p=>`<option value="${p}">${p}</option>`).join('');
-}
+function populatePICFilter(){const pics=[...new Set(allLogs.map(l=>l.pic).filter(Boolean))].sort();document.getElementById('log-pic').innerHTML='<option value="semua">Semua PIC</option>'+pics.map(p=>`<option value="${p}">${p}</option>`).join('');}
 function filterLog(status,el){logFilterStatus=status;document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));el.classList.add('active');renderLogTable();}
 function renderLogTable(){
-  const kat=document.getElementById('log-kat').value;const pic=document.getElementById('log-pic').value;const search=document.getElementById('log-search').value.toLowerCase();
+  const kat=document.getElementById('log-kat').value,pic=document.getElementById('log-pic').value,search=document.getElementById('log-search').value.toLowerCase();
   let rows=[...allLogs];
   if(logFilterStatus!=='semua')rows=rows.filter(r=>r.status===logFilterStatus);
   if(kat==='')rows=rows.filter(r=>r.tipe_log==='Non Case');
@@ -991,7 +792,7 @@ function renderLogTable(){
   }).join('');
 }
 function toggleUpdate(pid,btn){
-  const p=document.getElementById(pid);const isOpen=p.classList.contains('open');
+  const p=document.getElementById(pid),isOpen=p.classList.contains('open');
   document.querySelectorAll('.upanel').forEach(x=>x.classList.remove('open'));
   document.querySelectorAll('.btn-upd').forEach(b=>{if(b.textContent.includes('▴'))b.textContent='Update ▾';});
   if(!isOpen){p.classList.add('open');if(btn)btn.textContent='Tutup ▴';p.querySelectorAll('.upill').forEach(pill=>pill.classList.remove('on'));}
@@ -999,7 +800,7 @@ function toggleUpdate(pid,btn){
 function usp(el){const pp=el.closest('.upills');pp.querySelectorAll('.upill').forEach(p=>p.classList.remove('on'));el.classList.add('on');}
 function showTglSol(id,s){document.getElementById(id).style.display=s?'block':'none';}
 async function saveUpdate(rowIndex,panelId,noteId,tgsId,tglSolId){
-  const panel=document.getElementById(panelId);const active=panel.querySelector('.upill.on');
+  const panel=document.getElementById(panelId),active=panel.querySelector('.upill.on');
   if(!active){showToast('Pilih status baru','error');return;}
   const statusMap={'up-open':'Open','up-prog':'In Progress','up-sol':'Solved','up-ses':'Selesai','up-esc':'Escalated'};
   const cls=[...active.classList].find(c=>statusMap[c]);
@@ -1016,7 +817,6 @@ async function saveUpdate(rowIndex,panelId,noteId,tgsId,tglSolId){
   showLoading(false);
 }
 
-// DASHBOARD
 function onDashRegionChange(){
   const region=document.getElementById('dash-region').value;
   const entities=region==='semua'?[...new Set(allAreas.map(a=>a.entity).filter(Boolean))].sort():[...new Set(allAreas.filter(a=>a.region===region).map(a=>a.entity).filter(Boolean))].sort();
@@ -1045,9 +845,9 @@ function renderDashboard(d){
   ['bug','human','data'].forEach(k=>{const v=parseFloat(d['avg_'+k])||0;document.getElementById('avg-'+k).textContent=v+' hr';document.getElementById('avg-'+k+'-bar').style.width=Math.round(v/maxAvg*90)+'%';});
   const vO=parseFloat(d.avg_lainnya)||0;document.getElementById('avg-other').textContent=vO+' hr';document.getElementById('avg-other-bar').style.width=Math.round(vO/maxAvg*90)+'%';
   let alertHtml='';
-  if(d.bug_value>0&&d.bug_area>=5)alertHtml+=`<div class="alert red"><div class="alert-icon">🚨</div><div><div class="at">Eskalasi ke Vendor SFA</div><div class="ab">${d.bug_value} bug berdampak ke <strong>${d.bug_area} area</strong>. Segera buat CR ke vendor.</div></div></div>`;
-  if(d.human_value>=5)alertHtml+=`<div class="alert amber"><div class="alert-icon">⚠️</div><div><div class="at">Perlu Training Ulang</div><div class="ab">Human error ${d.human_value} value. Pertimbangkan jadwalkan training ulang.</div></div></div>`;
-  if(d.lainnya_value>=3)alertHtml+=`<div class="alert other"><div class="alert-icon">📋</div><div><div class="at">Evaluasi & Tindak Lanjut</div><div class="ab">${d.lainnya_value} value kategori Lainnya. Manager IT perlu evaluasi.</div></div></div>`;
+  if(d.bug_value>0&&d.bug_area>=5)alertHtml+=`<div class="alert red"><div class="alert-icon">🚨</div><div><div class="at">Eskalasi ke Vendor SFA</div><div class="ab">${d.bug_value} bug berdampak ke <strong>${d.bug_area} area</strong>.</div></div></div>`;
+  if(d.human_value>=5)alertHtml+=`<div class="alert amber"><div class="alert-icon">⚠️</div><div><div class="at">Perlu Training Ulang</div><div class="ab">Human error ${d.human_value} value.</div></div></div>`;
+  if(d.lainnya_value>=3)alertHtml+=`<div class="alert other"><div class="alert-icon">📋</div><div><div class="at">Evaluasi & Tindak Lanjut</div><div class="ab">${d.lainnya_value} value kategori Lainnya.</div></div></div>`;
   if(!alertHtml&&d.total_value===0)alertHtml=`<div class="alert green"><div class="alert-icon">✅</div><div><div class="at">Tidak ada case periode ini</div><div class="ab">Semua berjalan lancar.</div></div></div>`;
   document.getElementById('dash-alert').innerHTML=alertHtml;
   renderLineChart(d.tren||[]);renderComparison(d.tren||[]);
@@ -1055,19 +855,14 @@ function renderDashboard(d){
 function renderLineChart(tren){
   const labels=tren.map(t=>{const p=t.bulan.split('-');const b=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Ags','Sep','Okt','Nov','Des'];return b[parseInt(p[1])-1]+' '+p[0];});
   const datasets=[
-    {label:'Bug SFA',data:tren.map(t=>t.bug),borderColor:'#D93B3A',backgroundColor:'rgba(217,59,58,0.1)',tension:0.4,fill:true,pointRadius:5,pointHoverRadius:7,borderWidth:2.5},
-    {label:'Human Error',data:tren.map(t=>t.human),borderColor:'#D4891A',backgroundColor:'rgba(212,137,26,0.1)',tension:0.4,fill:true,pointRadius:5,pointHoverRadius:7,borderWidth:2.5},
-    {label:'Data Issue',data:tren.map(t=>t.data),borderColor:'#1A9068',backgroundColor:'rgba(26,144,104,0.1)',tension:0.4,fill:true,pointRadius:5,pointHoverRadius:7,borderWidth:2.5},
-    {label:'Lainnya',data:tren.map(t=>t.lainnya||0),borderColor:'#6B4EAA',backgroundColor:'rgba(107,78,170,0.1)',tension:0.4,fill:true,pointRadius:5,pointHoverRadius:7,borderWidth:2.5},
-    {label:'Total',data:tren.map(t=>t.total||0),borderColor:'#333',backgroundColor:'transparent',tension:0.4,fill:false,pointRadius:5,pointHoverRadius:7,borderWidth:3,borderDash:[5,3]},
+    {label:'Bug SFA',data:tren.map(t=>t.bug),borderColor:'#D93B3A',backgroundColor:'rgba(217,59,58,0.1)',tension:0.4,fill:true,pointRadius:5,borderWidth:2.5},
+    {label:'Human Error',data:tren.map(t=>t.human),borderColor:'#D4891A',backgroundColor:'rgba(212,137,26,0.1)',tension:0.4,fill:true,pointRadius:5,borderWidth:2.5},
+    {label:'Data Issue',data:tren.map(t=>t.data),borderColor:'#1A9068',backgroundColor:'rgba(26,144,104,0.1)',tension:0.4,fill:true,pointRadius:5,borderWidth:2.5},
+    {label:'Lainnya',data:tren.map(t=>t.lainnya||0),borderColor:'#6B4EAA',backgroundColor:'rgba(107,78,170,0.1)',tension:0.4,fill:true,pointRadius:5,borderWidth:2.5},
+    {label:'Total',data:tren.map(t=>t.total||0),borderColor:'#333',backgroundColor:'transparent',tension:0.4,fill:false,pointRadius:5,borderWidth:3,borderDash:[5,3]},
   ];
   if(lineChartInstance)lineChartInstance.destroy();
-  lineChartInstance=new Chart(document.getElementById('lineChart').getContext('2d'),{
-    type:'line',data:{labels,datasets},
-    options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
-      plugins:{legend:{display:false},tooltip:{backgroundColor:'rgba(26,26,24,0.92)',titleColor:'#fff',bodyColor:'rgba(255,255,255,0.85)',padding:12,cornerRadius:8,callbacks:{label:ctx=>`  ${ctx.dataset.label}: ${ctx.parsed.y}`}}},
-      scales:{x:{grid:{color:'rgba(0,0,0,0.05)'},ticks:{font:{size:12},color:'#6B6966'}},y:{beginAtZero:true,grid:{color:'rgba(0,0,0,0.05)'},ticks:{font:{size:12},color:'#6B6966',stepSize:1},title:{display:true,text:'Total Value',font:{size:11},color:'#6B6966'}}}}
-  });
+  lineChartInstance=new Chart(document.getElementById('lineChart').getContext('2d'),{type:'line',data:{labels,datasets},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{display:false}},scales:{x:{grid:{color:'rgba(0,0,0,0.05)'},ticks:{font:{size:12},color:'#6B6966'}},y:{beginAtZero:true,grid:{color:'rgba(0,0,0,0.05)'},ticks:{font:{size:12},color:'#6B6966',stepSize:1}}}}});
 }
 function renderComparison(tren){
   if(tren.length<2){document.getElementById('compare-chart').innerHTML='<div style="color:var(--muted);font-size:13px;grid-column:1/-1">Data belum cukup</div>';return;}
@@ -1078,16 +873,14 @@ function renderComparison(tren){
     {lbl:'Data Issue',cur:cur.data,prev:prev.data,color:'var(--data)'},
     {lbl:'Lainnya',cur:cur.lainnya||0,prev:prev.lainnya||0,color:'var(--other)'},
   ].map(item=>{
-    const diff=item.cur-item.prev;const pct=item.prev>0?Math.round((diff/item.prev)*100):item.cur>0?100:0;
-    const cls=diff>0?'diff-up':diff<0?'diff-down':'diff-same';const arrow=diff>0?'↑ ':diff<0?'↓ ':'= ';
+    const diff=item.cur-item.prev,pct=item.prev>0?Math.round((diff/item.prev)*100):item.cur>0?100:0;
+    const cls=diff>0?'diff-up':diff<0?'diff-down':'diff-same',arrow=diff>0?'↑ ':diff<0?'↓ ':'= ';
     return `<div class="comp-card"><div class="comp-lbl">${item.lbl}</div><div class="comp-val" style="color:${item.color}">${item.cur}</div><div class="comp-diff ${cls}">${arrow}${Math.abs(pct)}% vs bln lalu</div></div>`;
   }).join('');
 }
-
-// EXPORT
 function exportCSV(){
   if(!allLogs.length){showToast('Tidak ada data','error');return;}
-  const h=['No','Tanggal','PIC','Region','Entity','Area','Tipe Log','Business Process','Activity','Deliverable','User','Master Case','Kategori','Scope','Area Terdampak','Jml Area','Severity','Value','Deskripsi','Solusi','Status','Tgl Solved','Durasi','Catatan Update','Update Oleh'];
+  const h=['No','Tanggal','PIC','Region','Entity','Area','Tipe Log','BP','Activity','Deliverable','User','Master Case','Kategori','Scope','Area Terdampak','Jml Area','Severity','Value','Deskripsi','Solusi','Status','Tgl Solved','Durasi','Catatan Update','Update Oleh'];
   const rows=allLogs.map(r=>[r.no,r.tanggal,r.pic,r.region,r.entity,r.area,r.tipe_log,r.bp,r.activity,r.deliverable,r.user_komplain,r.master_case,r.kategori,r.scope,r.area_terdampak,r.jml_area,r.severity,r.value,`"${(r.deskripsi||'').replace(/"/g,'""')}"`,`"${(r.solusi||'').replace(/"/g,'""')}"`,r.status,r.tgl_solved,r.durasi,`"${(r.catatan_update||'').replace(/"/g,'""')}"`,r.update_oleh].join(','));
   const blob=new Blob(['\ufeff'+[h.join(','),...rows].join('\n')],{type:'text/csv;charset=utf-8'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`SFA_Log_${today()}.csv`;a.click();
@@ -1095,7 +888,7 @@ function exportCSV(){
 }
 function exportExcel(){
   if(!allLogs.length){showToast('Tidak ada data','error');return;}
-  const h=['No','Tanggal','PIC','Region','Entity','Area','Tipe Log','Business Process','Activity','Deliverable','User','Master Case','Kategori','Scope','Area Terdampak','Jml Area','Severity','Value','Deskripsi','Solusi','Status','Tgl Solved','Durasi','Catatan Update','Update Oleh'];
+  const h=['No','Tanggal','PIC','Region','Entity','Area','Tipe Log','BP','Activity','Deliverable','User','Master Case','Kategori','Scope','Area Terdampak','Jml Area','Severity','Value','Deskripsi','Solusi','Status','Tgl Solved','Durasi','Catatan Update','Update Oleh'];
   let html='<table border="1"><tr>'+h.map(x=>`<th style="background:#1460A0;color:#fff;padding:7px 12px;font-size:12px">${x}</th>`).join('')+'</tr>';
   html+=allLogs.map((r,i)=>'<tr style="background:'+(i%2===0?'#F8F7F4':'#fff')+'">'
     +[r.no,formatTgl(r.tanggal),r.pic,r.region,r.entity,r.area,r.tipe_log,r.bp,r.activity,r.deliverable,r.user_komplain,r.master_case,r.kategori,r.scope,r.area_terdampak,r.jml_area,r.severity,r.value,r.deskripsi,r.solusi,r.status,formatTgl(r.tgl_solved),r.durasi,r.catatan_update,r.update_oleh]
@@ -1105,9 +898,9 @@ function exportExcel(){
   showToast('Excel berhasil didownload!','success');
 }
 function exportDashPDF(){
-  const html=`<html><head><style>body{font-family:Arial,sans-serif;padding:36px;color:#1A1A18;}h1{font-size:20px;color:#1460A0;margin-bottom:4px;}.sub{font-size:13px;color:#6B6966;margin-bottom:28px;}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px;}.card{background:#F8F7F4;border-radius:10px;padding:14px;border-top:4px solid #ccc;}.lbl{font-size:10px;color:#6B6966;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;}.val{font-size:28px;font-weight:700;}.footer{margin-top:36px;font-size:11px;color:#6B6966;border-top:1px solid #E0DED8;padding-top:14px;text-align:center;}</style></head><body>
-    <h1>SFA IT Monitoring — Laporan Dashboard</h1>
-    <div class="sub">PT. Macrosentra Niagaboga · Region: ${document.getElementById('dash-region').value} · Periode: ${document.getElementById('dash-dari').value||'—'} s/d ${document.getElementById('dash-sampai').value||'—'}</div>
+  const html=`<html><head><style>body{font-family:Arial,sans-serif;padding:36px;}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px;}.card{background:#F8F7F4;border-radius:10px;padding:14px;border-top:4px solid #ccc;}.lbl{font-size:10px;color:#6B6966;text-transform:uppercase;margin-bottom:6px;}.val{font-size:28px;font-weight:700;}.footer{margin-top:36px;font-size:11px;color:#6B6966;border-top:1px solid #E0DED8;padding-top:14px;text-align:center;}</style></head><body>
+    <h1 style="font-size:20px;color:#1460A0;margin-bottom:4px;">SFA IT Monitoring — Laporan Dashboard</h1>
+    <p style="font-size:13px;color:#6B6966;margin-bottom:28px;">PT. Macrosentra Niagaboga · ${document.getElementById('dash-dari').value||'—'} s/d ${document.getElementById('dash-sampai').value||'—'}</p>
     <div class="grid">
       <div class="card" style="border-top-color:#D93B3A"><div class="lbl">Total Case</div><div class="val" style="color:#D93B3A">${document.getElementById('d-total').textContent}</div></div>
       <div class="card" style="border-top-color:#D93B3A"><div class="lbl">Bug SFA</div><div class="val" style="color:#D93B3A">${document.getElementById('d-bug').textContent}</div></div>
@@ -1116,12 +909,10 @@ function exportDashPDF(){
       <div class="card" style="border-top-color:#6B4EAA"><div class="lbl">Lainnya</div><div class="val" style="color:#6B4EAA">${document.getElementById('d-other').textContent}</div></div>
       <div class="card" style="border-top-color:#4A8A18"><div class="lbl">Non Case</div><div class="val" style="color:#4A8A18">${document.getElementById('d-noncase').textContent}</div></div>
     </div>
-    <div class="footer">Dicetak: ${new Date().toLocaleString('id-ID')} · SFA IT Monitoring v1.7 · PT. Macrosentra Niagaboga</div>
+    <div class="footer">Dicetak: ${new Date().toLocaleString('id-ID')} · SFA IT Monitoring v1.7</div>
   </body></html>`;
   const w=window.open('','_blank');w.document.write(html);w.document.close();w.print();
 }
-
-// TAB — FIX: dash tidak pakai .then() pada loadLogs
 function showTab(tab,el){
   document.querySelectorAll('.tab-content').forEach(t=>t.style.display='none');
   document.querySelectorAll('.ntab').forEach(t=>t.classList.remove('active'));
@@ -1133,7 +924,7 @@ function showTab(tab,el){
   if(tab==='dash'){initDashDates();loadDashboard();}
 }
 function initDashDates(){
-  const now=new Date();const y=now.getFullYear(),m=String(now.getMonth()+1).padStart(2,'0');
+  const now=new Date(),y=now.getFullYear(),m=String(now.getMonth()+1).padStart(2,'0');
   if(!document.getElementById('dash-dari').value)document.getElementById('dash-dari').value=`${y}-${m}-01`;
   if(!document.getElementById('dash-sampai').value)document.getElementById('dash-sampai').value=today();
 }
