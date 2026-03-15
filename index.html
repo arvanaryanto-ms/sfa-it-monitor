@@ -121,7 +121,7 @@ textarea{resize:vertical;min-height:64px;}
 .mapping-badge{display:flex;gap:8px;margin-top:6px;}
 .mbadge{background:var(--soft);border:1px solid var(--border);border-radius:5px;padding:4px 12px;font-size:11px;color:var(--muted);}
 .mbadge span{color:var(--text);font-weight:600;}
-.bobot-display{background:var(--accent-l);border:1.5px solid var(--accent);border-radius:8px;padding:8px 14px;font-family:var(--mono);font-size:14px;color:var(--accent-d);font-weight:600;display:inline-block;margin-top:5px;}
+.value-display{background:var(--accent-l);border:1.5px solid var(--accent);border-radius:8px;padding:8px 14px;font-family:var(--mono);font-size:14px;color:var(--accent-d);font-weight:600;display:inline-block;margin-top:5px;}
 
 /* CHECKLIST AREA */
 .area-checklist-wrap{border:1.5px solid var(--border);border-radius:8px;background:var(--bg);overflow:hidden;}
@@ -253,7 +253,7 @@ tr:hover td{background:#FAFAF8;}
 .stag{display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:4px;margin-top:5px;}
 .stag.case{background:var(--bug-l);color:var(--bug-d);}
 .stag.noncase{background:var(--green-l);color:var(--green-d);}
-.bobot-tag{display:inline-block;background:var(--soft);border:1px solid var(--border);border-radius:4px;padding:2px 7px;font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:4px;}
+.value-tag{display:inline-block;background:var(--soft);border:1px solid var(--border);border-radius:4px;padding:2px 7px;font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:4px;}
 
 .alert{border-radius:10px;padding:12px 16px;margin-bottom:10px;border-left:4px solid;display:flex;align-items:flex-start;gap:12px;}
 .alert.red{background:var(--bug-l);border-left-color:var(--bug);color:var(--bug-d);}
@@ -436,8 +436,8 @@ tr:hover td{background:#FAFAF8;}
             <div class="scope-pill"           id="sc-nasional" onclick="setScope('Nasional',this)">Nasional</div>
           </div>
           <div style="margin-top:8px;">
-            <div style="font-size:11px;color:var(--muted);margin-bottom:3px;font-weight:600;">BOBOT</div>
-            <div class="bobot-display" id="bobot-display">1</div>
+            <div style="font-size:11px;color:var(--muted);margin-bottom:3px;font-weight:600;">VALUE</div>
+            <div class="value-display" id="value-display">1</div>
           </div>
         </div>
       </div>
@@ -574,7 +574,7 @@ tr:hover td{background:#FAFAF8;}
     <div class="tw">
       <table>
         <thead>
-          <tr><th>No</th><th>Tgl</th><th>Case / Aktivitas</th><th>Area</th><th>User</th><th>Kategori</th><th>Severity</th><th>Scope</th><th>Bobot</th><th>Status</th><th>Durasi</th><th>Aksi</th></tr>
+          <tr><th>No</th><th>Tgl</th><th>Case / Aktivitas</th><th>Area</th><th>User</th><th>Kategori</th><th>Severity</th><th>Scope</th><th>Value</th><th>Status</th><th>Durasi</th><th>Aksi</th></tr>
         </thead>
         <tbody id="log-tbody"></tbody>
       </table>
@@ -616,28 +616,25 @@ tr:hover td{background:#FAFAF8;}
       <button class="btn-tampilkan" onclick="loadDashboard()">Tampilkan</button>
     </div>
 
-    <!-- Stat Cards — Row 1: Case/Bermasalah -->
+    <!-- Stat Cards -->
     <div style="font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Case / Bermasalah</div>
     <div class="stats-grid" style="margin-bottom:6px;">
       <div class="stat s-case">
         <div class="slbl">Total Case</div>
         <div class="sval" id="d-total">—</div>
-        <div class="ssub">kejadian unik</div>
-        <div class="bobot-tag" id="d-total-bobot">bobot: —</div>
+        <div class="ssub" id="d-total-pending" style="color:var(--human);font-weight:500;">Pending: —</div>
         <span class="stag case">Case / Bermasalah</span>
       </div>
       <div class="stat s-bug">
         <div class="slbl">Bug SFA</div>
         <div class="sval" id="d-bug">—</div>
-        <div class="ssub" id="d-bug-area">— area</div>
-        <div class="bobot-tag" id="d-bug-bobot">bobot: —</div>
+        <div class="ssub" id="d-bug-pending" style="color:var(--human);font-weight:500;">Pending: —</div>
         <span class="stag case">Case / Bermasalah</span>
       </div>
       <div class="stat s-human">
         <div class="slbl">Human Error</div>
         <div class="sval" id="d-human">—</div>
-        <div class="ssub" id="d-human-area">— area</div>
-        <div class="bobot-tag" id="d-human-bobot">bobot: —</div>
+        <div class="ssub" id="d-human-pending" style="color:var(--human);font-weight:500;">Pending: —</div>
         <span class="stag case">Case / Bermasalah</span>
       </div>
     </div>
@@ -645,15 +642,13 @@ tr:hover td{background:#FAFAF8;}
       <div class="stat s-data">
         <div class="slbl">Data Issue</div>
         <div class="sval" id="d-data">—</div>
-        <div class="ssub" id="d-data-area">— area</div>
-        <div class="bobot-tag" id="d-data-bobot">bobot: —</div>
+        <div class="ssub" id="d-data-pending" style="color:var(--human);font-weight:500;">Pending: —</div>
         <span class="stag case">Case / Bermasalah</span>
       </div>
       <div class="stat s-other">
         <div class="slbl">Lainnya</div>
         <div class="sval" id="d-other">—</div>
-        <div class="ssub" id="d-other-area">— area</div>
-        <div class="bobot-tag" id="d-other-bobot">bobot: —</div>
+        <div class="ssub" id="d-other-pending" style="color:var(--human);font-weight:500;">Pending: —</div>
         <span class="stag case">Case / Bermasalah</span>
       </div>
       <div class="stat s-noncase">
@@ -668,7 +663,7 @@ tr:hover td{background:#FAFAF8;}
 
     <!-- Tren Line Chart -->
     <div class="dcard" style="margin-bottom:14px;">
-      <div class="dtitle"><div class="dtitle-dot" style="background:var(--accent)"></div>Tren Case Solved — 6 Bulan (Total Bobot)</div>
+      <div class="dtitle"><div class="dtitle-dot" style="background:var(--accent)"></div>Tren Case Solved — 6 Bulan (Total Value)</div>
       <div class="line-chart-wrap">
         <canvas id="lineChart"></canvas>
       </div>
@@ -684,13 +679,13 @@ tr:hover td{background:#FAFAF8;}
     <!-- Range Solved + Avg Durasi -->
     <div class="dash-row col2">
       <div class="dcard">
-        <div class="dtitle"><div class="dtitle-dot" style="background:var(--green)"></div>Range Waktu Solved (Semua Case)</div>
+        <div class="dtitle"><div class="dtitle-dot" style="background:var(--green)"></div>Range Waktu Solved — Total Value (harus = Total Case)</div>
         <div class="range-row">
           <div class="rcard r1"><div class="rnum" id="r1">—</div><div class="rlbl">1–3 hari</div></div>
           <div class="rcard r2"><div class="rnum" id="r2">—</div><div class="rlbl">4–7 hari</div></div>
           <div class="rcard r3"><div class="rnum" id="r3">—</div><div class="rlbl">&gt;7 hari</div></div>
         </div>
-        <div style="font-size:11px;color:var(--muted);margin-bottom:4px;font-weight:600;">Total solved: <span id="total-solved" style="font-family:var(--mono);color:var(--text)">—</span></div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px;font-weight:600;">Total value solved: <span id="total-solved" style="font-family:var(--mono);color:var(--text);font-size:14px">—</span> <span style="color:var(--muted);font-weight:400">(harus sama dengan Total Case di card)</span></div>
       </div>
       <div class="dcard">
         <div class="dtitle"><div class="dtitle-dot" style="background:var(--human)"></div>Rata-rata Durasi per Kategori</div>
@@ -703,7 +698,7 @@ tr:hover td{background:#FAFAF8;}
 
     <!-- Perbandingan -->
     <div class="dcard" style="margin-bottom:14px;">
-      <div class="dtitle"><div class="dtitle-dot" style="background:var(--other)"></div>Perbandingan Bulan Ini vs Bulan Lalu (Bobot)</div>
+      <div class="dtitle"><div class="dtitle-dot" style="background:var(--other)"></div>Perbandingan Bulan Ini vs Bulan Lalu (Value)</div>
       <div class="compare-grid" id="compare-chart"></div>
     </div>
 
@@ -714,13 +709,13 @@ tr:hover td{background:#FAFAF8;}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <script>
-const API='https://script.google.com/macros/s/AKfycbwWaqkTayvMfGCuDX4H1y881_m63IdjS5R3aUNBsuS_Zj04rfnyljvuNc6BL2bfbyI/exec';
+const API='https://script.google.com/macros/s/AKfycbw9b762DqTQM10_te10CblQ7jBbb0sjHrH6wY1Q5BGhxFfYyq3SXwrO3wGdSZ2xZwo/exec';
 let currentUser=null,allAreas=[],allBP=[],allCases=[],allLogs=[];
 let selectedCat='',selectedSev='',selectedStat='open',selectedScope='Branch',selectedRutinStat='prog';
 let currentTipe='noncase',logFilterStatus='semua',pendingFormData=null,lineChartInstance=null;
 const BP_NONCASE=['MMD','MAP','RPS','SRV','DEV'];
 const BP_CASE=['TRB','NDG','NCD','RPT','NSD','NCR','NAP','NAV'];
-const SCOPE_BOBOT={'Branch':1,'Entity':3,'Region':6,'Nasional':10};
+const SCOPE_VALUE={'Branch':1,'Entity':3,'Region':6,'Nasional':10};
 
 function showToast(msg,type=''){const t=document.getElementById('toast');t.textContent=msg;t.className='toast show '+type;setTimeout(()=>t.className='toast',3000);}
 function showLoading(v){document.getElementById('loading').classList.toggle('show',v);}
@@ -837,24 +832,24 @@ function getCheckedState(area){return checkedAreas.has(area);}
 function toggleCheck(el,area){
   if(checkedAreas.has(area)){checkedAreas.delete(area);el.classList.remove('checked');el.querySelector('input').checked=false;}
   else{checkedAreas.add(area);el.classList.add('checked');el.querySelector('input').checked=true;}
-  updateCkCount();updateBobot();
+  updateCkCount();updateValue();
 }
 function toggleCheckInput(inp,area){
   if(inp.checked){checkedAreas.add(area);inp.closest('.area-check-item').classList.add('checked');}
   else{checkedAreas.delete(area);inp.closest('.area-check-item').classList.remove('checked');}
-  updateCkCount();updateBobot();
+  updateCkCount();updateValue();
 }
 function checkAll(){
   const region=document.getElementById('ck-region').value;
   const entity=document.getElementById('ck-entity').value;
   allAreas.filter(a=>(!region||a.region===region)&&(!entity||a.entity===entity)).forEach(a=>checkedAreas.add(a.area));
-  renderChecklist();updateBobot();
+  renderChecklist();updateValue();
 }
 function uncheckAll(){
   const region=document.getElementById('ck-region').value;
   const entity=document.getElementById('ck-entity').value;
   allAreas.filter(a=>(!region||a.region===region)&&(!entity||a.entity===entity)).forEach(a=>checkedAreas.delete(a.area));
-  renderChecklist();updateBobot();
+  renderChecklist();updateValue();
 }
 function updateCkCount(){
   const c=checkedAreas.size;
@@ -921,15 +916,15 @@ function setScope(scope,el){
   const showMulti=scope!=='Branch'&&currentTipe==='case';
   document.getElementById('multi-wrap').style.display=showMulti?'block':'none';
   if(showMulti)renderChecklist();
-  updateBobot();
+  updateValue();
 }
-function updateBobot(){
+function updateValue(){
   const mainArea=document.getElementById('f-area');
   const mainVal=mainArea.options[mainArea.selectedIndex]?.dataset?.area;
   const extras=[...checkedAreas].filter(a=>a!==mainVal);
   const jml=mainVal?(extras.length+1):Math.max(checkedAreas.size,1);
-  const bobot=(SCOPE_BOBOT[selectedScope]||1)*jml;
-  document.getElementById('bobot-display').textContent=bobot;
+  const value=(SCOPE_VALUE[selectedScope]||1)*jml;
+  document.getElementById('value-display').textContent=value;
 }
 function selCat(type){
   selectedCat=type==='bug'?'Bug SFA':type==='human'?'Human Error':type==='data'?'Data Issue':'Lainnya';
@@ -958,13 +953,13 @@ function showConfirm(){
   const activity=document.getElementById('f-activity').value;
   if(!tanggal||!areaSel.value||!bp||!activity){showToast('Lengkapi field wajib (*)','error');return;}
   if(currentTipe==='case'&&!selectedCat){showToast('Pilih Kategori Case','error');return;}
-  if(currentTipe==='case'&&!selectedSev){showToast('Pilih Severity','error');return;}
+  if(currentTipe==='case'&&!selectedSev){showToast('Pilih Severity terlebih dahulu','error');return;}
 
   const mainAreaName=areaOpt?.dataset?.area||areaSel.value;
   const allChecked=[...checkedAreas];
   const allAreaList=selectedScope==='Branch'?[mainAreaName]:[mainAreaName,...allChecked.filter(a=>a!==mainAreaName)];
   const jmlArea=allAreaList.length;
-  const bobot=(SCOPE_BOBOT[selectedScope]||1)*jmlArea;
+  const value=(SCOPE_VALUE[selectedScope]||1)*jmlArea;
   const statusVal=currentTipe==='noncase'?(selectedRutinStat==='selesai'?'Selesai':'In Progress'):selectedStat==='open'?'Open':selectedStat==='prog'?'In Progress':'Solved';
 
   pendingFormData={
@@ -976,7 +971,7 @@ function showConfirm(){
     master_case:currentTipe==='case'?document.getElementById('f-mastercase').value:'',
     kategori:currentTipe==='case'?selectedCat:'',scope:selectedScope,
     area_terdampak:allAreaList.join(', '),jml_area:jmlArea,
-    severity:currentTipe==='case'?selectedSev:'',bobot,
+    severity:currentTipe==='case'?selectedSev:'',value,
     deskripsi:currentTipe==='case'?document.getElementById('f-deskripsi').value:'',
     solusi:currentTipe==='case'?document.getElementById('f-solusi').value:'',
     status:statusVal,
@@ -984,7 +979,7 @@ function showConfirm(){
 
   const rows=[['Tipe Log',pendingFormData.tipe_log],['Tanggal',formatTgl(tanggal)],['Area Utama',mainAreaName],['Scope',selectedScope],['Business Process',pendingFormData.bp],['Activity',activity],['Status',statusVal]];
   if(currentTipe==='case'){
-    rows.push(['Case',pendingFormData.master_case||'—'],['Kategori',selectedCat],['Severity',selectedSev],['Bobot',bobot]);
+    rows.push(['Case',pendingFormData.master_case||'—'],['Kategori',selectedCat],['Severity',selectedSev],['Value',value]);
     if(jmlArea>1)rows.push(['Area Terdampak ('+jmlArea+')',allAreaList.slice(0,3).join(', ')+(jmlArea>3?'...':'')]);
   }
   document.getElementById('modal-rows').innerHTML=rows.map(([l,v])=>`<div class="modal-row"><span class="modal-lbl">${l}</span><span class="modal-val">${v}</span></div>`).join('');
@@ -1012,6 +1007,10 @@ function resetForm(){
   document.getElementById('ck-region').value='';document.getElementById('ck-entity').innerHTML='<option value="">Semua Entity</option>';
   checkedAreas.clear();
   selectedCat='';selectedSev='';selectedStat='open';selectedScope='Branch';selectedRutinStat='prog';
+  // Reset severity visual
+  ['critical','high','medium'].forEach(t=>{const el=document.getElementById('sv-'+t);if(el)el.className='sev-pill';});
+  // Reset kategori visual
+  ['bug','human','data','other'].forEach(t=>{const el=document.getElementById('cp-'+t);if(el)el.className='cat-pill';});
   setType('noncase');setScope('Branch',document.getElementById('sc-branch'));selStat('open');selRutinStat('prog');
 }
 
@@ -1095,7 +1094,7 @@ function renderLogTable(){
       <td style="font-weight:600;font-size:12px">${r.user_komplain||'—'}</td>
       <td>${katB}</td><td>${sevB}</td>
       <td style="font-size:12px;color:var(--muted)">${r.scope||'—'}</td>
-      <td style="font-family:var(--mono);font-weight:700;color:var(--accent-d);font-size:13px">${r.bobot||'—'}</td>
+      <td style="font-family:var(--mono);font-weight:700;color:var(--accent-d);font-size:13px">${r.value||'—'}</td>
       <td>${statB}</td><td>${durB}</td>
       <td>${canUpd?`<button class="btn-upd" onclick="toggleUpdate('up-${i}',this)">Update ▾</button>`:''}</td>
     </tr>${upPanel}`;
@@ -1148,26 +1147,22 @@ async function loadDashboard(){
   showLoading(false);
 }
 function renderDashboard(d){
-  // Stat cards
-  document.getElementById('d-total').textContent=d.total_case;
-  document.getElementById('d-total-bobot').textContent='bobot: '+d.total_bobot;
-  document.getElementById('d-bug').textContent=d.bug;
-  document.getElementById('d-bug-area').textContent=d.bug_area+' area terdampak';
-  document.getElementById('d-bug-bobot').textContent='bobot: '+d.bug_bobot;
-  document.getElementById('d-human').textContent=d.human;
-  document.getElementById('d-human-area').textContent=d.human_area+' area terdampak';
-  document.getElementById('d-human-bobot').textContent='bobot: '+d.human_bobot;
-  document.getElementById('d-data').textContent=d.data_issue;
-  document.getElementById('d-data-area').textContent=d.data_area+' area terdampak';
-  document.getElementById('d-data-bobot').textContent='bobot: '+d.data_bobot;
-  document.getElementById('d-other').textContent=d.lainnya;
-  document.getElementById('d-other-area').textContent=d.lainnya_area+' area terdampak';
-  document.getElementById('d-other-bobot').textContent='bobot: '+d.lainnya_bobot;
+  // Stat cards - angka utama = value Solved, pending = belum solved
+  document.getElementById('d-total').textContent=d.total_value;
+  document.getElementById('d-total-pending').textContent='Pending: '+d.total_pending;
+  document.getElementById('d-bug').textContent=d.bug_value;
+  document.getElementById('d-bug-pending').textContent='Pending: '+d.bug_pending;
+  document.getElementById('d-human').textContent=d.human_value;
+  document.getElementById('d-human-pending').textContent='Pending: '+d.human_pending;
+  document.getElementById('d-data').textContent=d.data_value;
+  document.getElementById('d-data-pending').textContent='Pending: '+d.data_pending;
+  document.getElementById('d-other').textContent=d.lainnya_value;
+  document.getElementById('d-other-pending').textContent='Pending: '+d.lainnya_pending;
   document.getElementById('d-noncase').textContent=d.non_case;
   document.getElementById('r1').textContent=d.range_1_3;
   document.getElementById('r2').textContent=d.range_4_7;
   document.getElementById('r3').textContent=d.range_gt7;
-  document.getElementById('total-solved').textContent=d.total_solved+' case';
+  document.getElementById('total-solved').textContent=d.total_solved_value+' (value)';
 
   // Avg bar
   const maxAvg=Math.max(parseFloat(d.avg_bug)||0,parseFloat(d.avg_human)||0,parseFloat(d.avg_data)||0,parseFloat(d.avg_lainnya)||0,1);
@@ -1182,7 +1177,7 @@ function renderDashboard(d){
 
   // Alert
   let alertHtml='';
-  if(d.bug>0&&d.bug_area>=5)alertHtml+=`<div class="alert red"><div class="alert-icon">🚨</div><div><div class="at">Eskalasi ke Vendor SFA</div><div class="ab">${d.bug} bug berdampak ke <strong>${d.bug_area} area</strong> (bobot: ${d.bug_bobot}). Segera buat CR ke vendor.</div></div></div>`;
+  if(d.bug>0&&d.bug_area>=5)alertHtml+=`<div class="alert red"><div class="alert-icon">🚨</div><div><div class="at">Eskalasi ke Vendor SFA</div><div class="ab">${d.bug} bug berdampak ke <strong>${d.bug_area} area</strong> (value: ${d.bug_value}). Segera buat CR ke vendor.</div></div></div>`;
   if(d.human>=5)alertHtml+=`<div class="alert amber"><div class="alert-icon">⚠️</div><div><div class="at">Perlu Training Ulang</div><div class="ab">Human error ${d.human} kejadian. Pertimbangkan jadwalkan training ulang salesman.</div></div></div>`;
   if(d.lainnya>=3)alertHtml+=`<div class="alert other"><div class="alert-icon">📋</div><div><div class="at">Evaluasi & Tindak Lanjut</div><div class="ab">${d.lainnya} case kategori Lainnya. Manager IT perlu melakukan evaluasi.</div></div></div>`;
   if(!alertHtml&&d.total_case===0)alertHtml=`<div class="alert green"><div class="alert-icon">✅</div><div><div class="at">Tidak ada case periode ini</div><div class="ab">Semua berjalan lancar.</div></div></div>`;
@@ -1222,7 +1217,7 @@ function renderLineChart(tren){
       },
       scales:{
         x:{grid:{color:'rgba(0,0,0,0.05)'},ticks:{font:{size:12},color:'#6B6966'}},
-        y:{beginAtZero:true,grid:{color:'rgba(0,0,0,0.05)'},ticks:{font:{size:12},color:'#6B6966',stepSize:1},title:{display:true,text:'Total Bobot',font:{size:11},color:'#6B6966'}}
+        y:{beginAtZero:true,grid:{color:'rgba(0,0,0,0.05)'},ticks:{font:{size:12},color:'#6B6966',stepSize:1},title:{display:true,text:'Total Value',font:{size:11},color:'#6B6966'}}
       }
     }
   });
@@ -1253,18 +1248,18 @@ function renderComparison(tren){
 // EXPORT
 function exportCSV(){
   if(!allLogs.length){showToast('Tidak ada data','error');return;}
-  const headers=['No','Tanggal','PIC','Region','Entity','Area','Tipe Log','Business Process','Activity','Deliverable','User','Master Case','Kategori','Scope','Area Terdampak','Jml Area','Severity','Bobot','Deskripsi','Solusi','Status','Tgl Solved','Durasi','Catatan Update','Update Oleh'];
-  const rows=allLogs.map(r=>[r.no,r.tanggal,r.pic,r.region,r.entity,r.area,r.tipe_log,r.bp,r.activity,r.deliverable,r.user_komplain,r.master_case,r.kategori,r.scope,r.area_terdampak,r.jml_area,r.severity,r.bobot,`"${(r.deskripsi||'').replace(/"/g,'""')}"`,`"${(r.solusi||'').replace(/"/g,'""')}"`,r.status,r.tgl_solved,r.durasi,`"${(r.catatan_update||'').replace(/"/g,'""')}"`,r.update_oleh].join(','));
+  const headers=['No','Tanggal','PIC','Region','Entity','Area','Tipe Log','Business Process','Activity','Deliverable','User','Master Case','Kategori','Scope','Area Terdampak','Jml Area','Severity','Value','Deskripsi','Solusi','Status','Tgl Solved','Durasi','Catatan Update','Update Oleh'];
+  const rows=allLogs.map(r=>[r.no,r.tanggal,r.pic,r.region,r.entity,r.area,r.tipe_log,r.bp,r.activity,r.deliverable,r.user_komplain,r.master_case,r.kategori,r.scope,r.area_terdampak,r.jml_area,r.severity,r.value,`"${(r.deskripsi||'').replace(/"/g,'""')}"`,`"${(r.solusi||'').replace(/"/g,'""')}"`,r.status,r.tgl_solved,r.durasi,`"${(r.catatan_update||'').replace(/"/g,'""')}"`,r.update_oleh].join(','));
   const blob=new Blob(['\ufeff'+[headers.join(','),...rows].join('\n')],{type:'text/csv;charset=utf-8'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`SFA_Log_${today()}.csv`;a.click();
   showToast('CSV berhasil didownload!','success');
 }
 function exportExcel(){
   if(!allLogs.length){showToast('Tidak ada data','error');return;}
-  const headers=['No','Tanggal','PIC','Region','Entity','Area','Tipe Log','Business Process','Activity','Deliverable','User','Master Case','Kategori','Scope','Area Terdampak','Jml Area','Severity','Bobot','Deskripsi','Solusi','Status','Tgl Solved','Durasi','Catatan Update','Update Oleh'];
+  const headers=['No','Tanggal','PIC','Region','Entity','Area','Tipe Log','Business Process','Activity','Deliverable','User','Master Case','Kategori','Scope','Area Terdampak','Jml Area','Severity','Value','Deskripsi','Solusi','Status','Tgl Solved','Durasi','Catatan Update','Update Oleh'];
   let html='<table border="1"><tr>'+headers.map(h=>`<th style="background:#1460A0;color:#fff;padding:7px 12px;font-size:12px">${h}</th>`).join('')+'</tr>';
   html+=allLogs.map((r,i)=>'<tr style="background:'+(i%2===0?'#F8F7F4':'#fff')+'">'
-    +[r.no,formatTgl(r.tanggal),r.pic,r.region,r.entity,r.area,r.tipe_log,r.bp,r.activity,r.deliverable,r.user_komplain,r.master_case,r.kategori,r.scope,r.area_terdampak,r.jml_area,r.severity,r.bobot,r.deskripsi,r.solusi,r.status,formatTgl(r.tgl_solved),r.durasi,r.catatan_update,r.update_oleh]
+    +[r.no,formatTgl(r.tanggal),r.pic,r.region,r.entity,r.area,r.tipe_log,r.bp,r.activity,r.deliverable,r.user_komplain,r.master_case,r.kategori,r.scope,r.area_terdampak,r.jml_area,r.severity,r.value,r.deskripsi,r.solusi,r.status,formatTgl(r.tgl_solved),r.durasi,r.catatan_update,r.update_oleh]
     .map(v=>`<td style="padding:6px 10px;font-size:12px">${v||''}</td>`).join('')+'</tr>').join('');
   const blob=new Blob([html+'</table>'],{type:'application/vnd.ms-excel;charset=utf-8'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`SFA_Log_${today()}.xls`;a.click();
