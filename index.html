@@ -706,6 +706,7 @@ function showConfirm(){
     deskripsi:currentTipe==='case'?document.getElementById('f-deskripsi').value:'',
     solusi:currentTipe==='case'?document.getElementById('f-solusi').value:'',status:statusVal,tanggal:tanggal,tgl_solved:statusVal==='Solved'?tanggal:'',
   };
+  alert('DEBUG — tipe:'+currentTipe+' selectedStat:'+selectedStat+' selectedRutinStat:'+selectedRutinStat+' statusVal:'+statusVal);
   const rows=[['Tipe Log',pendingFormData.tipe_log],['Tanggal',formatTgl(tanggal)],['Area Utama',mainAreaName],['Scope',selectedScope],['Business Process',pendingFormData.bp],['Activity',activity],['Status',statusVal]];
   if(currentTipe==='case'){rows.push(['Case',pendingFormData.master_case||'—'],['Kategori',selectedCat],['Severity',selectedSev],['Value',value]);if(jmlArea>1)rows.push(['Area Terdampak ('+jmlArea+')',allAreaList.slice(0,3).join(', ')+(jmlArea>3?'...':'')]);}
   document.getElementById('modal-rows').innerHTML=rows.map(([l,v])=>`<div class="modal-row"><span class="modal-lbl">${l}</span><span class="modal-val">${v}</span></div>`).join('');
