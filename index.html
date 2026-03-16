@@ -446,7 +446,7 @@ tr:hover td{background:#FAFAF8;}
     <div class="stats-grid" style="margin-bottom:14px;">
       <div class="stat s-data"><div class="slbl">Data Issue</div><div class="sval" id="d-data">—</div><div class="ssub" id="d-data-pending" style="color:var(--human);font-weight:500;">Pending: —</div><span class="stag case">Case</span></div>
       <div class="stat s-other"><div class="slbl">Lainnya</div><div class="sval" id="d-other">—</div><div class="ssub" id="d-other-pending" style="color:var(--human);font-weight:500;">Pending: —</div><span class="stag case">Case</span></div>
-      <div class="stat s-noncase"><div class="slbl">Non Case</div><div class="sval" id="d-noncase">—</div><div class="ssub">aktivitas selesai</div><span class="stag noncase">Non Case</span></div>
+      <div class="stat s-noncase"><div class="slbl">Non Case</div><div class="sval" id="d-noncase">—</div><div class="ssub" id="d-noncase-pending" style="color:var(--human);font-weight:500;">Pending: —</div><span class="stag noncase">Non Case</span></div>
     </div>
     <div id="dash-alert"></div>
     <div class="dcard" style="margin-bottom:14px;">
@@ -480,7 +480,7 @@ tr:hover td{background:#FAFAF8;}
 // =============================================
 // GANTI URL INI DENGAN URL DEPLOYMENT TERBARU
 // =============================================
-const API = 'https://script.google.com/macros/s/AKfycbxXkgFQHr0i331nqIojnNV6EVYTUPMHz5Y0PkHvpLcO7arz2yVYnY2f7s54THHGC-A/exec';
+const API = 'https://script.google.com/macros/s/AKfycbwNLVaLAWvMmBAT6q9h03AW4IpGuPRsWrQINoymbpTnAWn98aHHMcnys4YzcXnqz2E/exec';
 
 async function api(params) {
   const url = API + '?' + new URLSearchParams(params);
@@ -701,7 +701,7 @@ function showConfirm(){
     area_terdampak:allAreaList.join(', '),jml_area:jmlArea,
     severity:currentTipe==='case'?selectedSev:'',value,
     deskripsi:currentTipe==='case'?document.getElementById('f-deskripsi').value:'',
-    solusi:currentTipe==='case'?document.getElementById('f-solusi').value:'',status:statusVal,tanggal:tanggal,tgl_solved:statusVal==='Solved'?tanggal:'',
+    solusi:currentTipe==='case'?document.getElementById('f-solusi').value:'',status:statusVal,tanggal:tanggal,tgl_solved:(statusVal==='Solved'||statusVal==='Selesai')?tanggal:'',
   };
   const rows=[['Tipe Log',pendingFormData.tipe_log],['Tanggal',formatTgl(tanggal)],['Area Utama',mainAreaName],['Scope',selectedScope],['Business Process',pendingFormData.bp],['Activity',activity],['Status',statusVal]];
   if(currentTipe==='case'){rows.push(['Case',pendingFormData.master_case||'—'],['Kategori',selectedCat],['Severity',selectedSev],['Value',value]);if(jmlArea>1)rows.push(['Area Terdampak ('+jmlArea+')',allAreaList.slice(0,3).join(', ')+(jmlArea>3?'...':'')]);}
@@ -838,27 +838,28 @@ function renderDashboard(d){
   document.getElementById('d-noncase').textContent=d.non_case;
   document.getElementById('r1').textContent=d.range_1_3;document.getElementById('r2').textContent=d.range_4_7;document.getElementById('r3').textContent=d.range_gt7;
   document.getElementById('total-solved').textContent=d.total_solved_value+' (value)';
+  // Non Case pending
+  document.getElementById('d-noncase-pending').textContent='Pending: '+(d.non_case_pending||0);
   // Top 5 Case
-  const topList = d.top_case||[];
-  const sevColor = s => s==='Critical'?'var(--bug)':s==='High'?'var(--human)':'var(--green)';
-  const statColor = s => s==='Open'?'var(--accent)':'var(--human)';
-  document.getElementById('top-case-list').innerHTML = !topList.length
-    ? '<div style="color:var(--muted);font-size:13px;text-align:center;padding:20px">✅ Tidak ada case pending</div>'
-    : '<table style="width:100%;border-collapse:collapse;font-size:12px">'
-      + '<tr style="color:var(--muted);font-size:11px;border-bottom:1px solid var(--border)">'
-      + '<th style="padding:6px 8px;text-align:left;font-weight:600">Case</th>'
-      + '<th style="padding:6px 8px;text-align:left;font-weight:600">Area</th>'
-      + '<th style="padding:6px 8px;text-align:center;font-weight:600">Kategori</th>'
-      + '<th style="padding:6px 8px;text-align:center;font-weight:600">Status</th>'
-      + '<th style="padding:6px 8px;text-align:center;font-weight:600">Hari</th></tr>'
-      + topList.map(c=>`<tr style="border-bottom:1px solid var(--soft)">
-          <td style="padding:6px 8px;font-weight:500;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${c.case}">${c.case||'—'}</td>
-          <td style="padding:6px 8px;color:var(--muted)">${c.area||'—'}</td>
-          <td style="padding:6px 8px;text-align:center"><span style="background:var(--soft);border-radius:4px;padding:2px 7px;font-size:11px;font-weight:600">${c.kategori||'—'}</span></td>
-          <td style="padding:6px 8px;text-align:center"><span style="color:${statColor(c.status)};font-weight:600;font-size:11px">${c.status}</span></td>
-          <td style="padding:6px 8px;text-align:center;font-family:var(--mono);font-weight:700;color:${c.hari>=7?'var(--bug)':c.hari>=3?'var(--human)':'var(--green)'}">${c.hari}</span></td>
-        </tr>`).join('')
-      + '</table>';
+  const topList=d.top_case||[];
+  const statColor=s=>s==='Open'?'var(--accent)':'var(--human)';
+  document.getElementById('top-case-list').innerHTML=!topList.length
+    ?'<div style="color:var(--muted);font-size:13px;text-align:center;padding:20px">✅ Tidak ada case pending</div>'
+    :'<table style="width:100%;border-collapse:collapse;font-size:12px">'
+      +'<tr style="color:var(--muted);font-size:11px;border-bottom:1px solid var(--border)">'
+      +'<th style="padding:6px 8px;text-align:left;font-weight:600">Case</th>'
+      +'<th style="padding:6px 8px;text-align:left;font-weight:600">Area</th>'
+      +'<th style="padding:6px 8px;text-align:center;font-weight:600">Kat</th>'
+      +'<th style="padding:6px 8px;text-align:center;font-weight:600">Status</th>'
+      +'<th style="padding:6px 8px;text-align:center;font-weight:600">Hari</th></tr>'
+      +topList.map(c=>`<tr style="border-bottom:1px solid var(--soft)">
+        <td style="padding:6px 8px;font-weight:500;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${c.case}">${c.case||'—'}</td>
+        <td style="padding:6px 8px;color:var(--muted);font-size:11px">${c.area||'—'}</td>
+        <td style="padding:6px 8px;text-align:center"><span style="background:var(--soft);border-radius:4px;padding:2px 7px;font-size:11px;font-weight:600">${c.kategori||'—'}</span></td>
+        <td style="padding:6px 8px;text-align:center"><span style="color:${statColor(c.status)};font-weight:600;font-size:11px">${c.status}</span></td>
+        <td style="padding:6px 8px;text-align:center;font-family:var(--mono);font-weight:700;color:${c.hari>=7?'var(--bug)':c.hari>=3?'var(--human)':'var(--green)'}">${c.hari}</td>
+      </tr>`).join('')
+      +'</table>';
   let alertHtml='';
   if(d.bug_value>0&&d.bug_area>=5)alertHtml+=`<div class="alert red"><div class="alert-icon">🚨</div><div><div class="at">Eskalasi ke Vendor SFA</div><div class="ab">${d.bug_value} bug berdampak ke <strong>${d.bug_area} area</strong>.</div></div></div>`;
   if(d.human_value>=5)alertHtml+=`<div class="alert amber"><div class="alert-icon">⚠️</div><div><div class="at">Perlu Training Ulang</div><div class="ab">Human error ${d.human_value} value.</div></div></div>`;
