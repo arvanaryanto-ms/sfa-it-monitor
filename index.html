@@ -623,6 +623,9 @@ function setType(type){
   document.getElementById('snum-case-detail').textContent='3';
   document.getElementById('snum-area').textContent=type==='noncase'?'3':'4';
   document.getElementById('snum-status-nc').textContent=type==='noncase'?'4':'5';
+  // Reset status saat ganti tipe
+  selectedStat='open'; selStat('open');
+  selectedRutinStat='prog'; selRutinStat('prog');
   populateBPDropdown(type);
 }
 function populateBPDropdown(type){
