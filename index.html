@@ -491,7 +491,7 @@ async function api(params) {
 let currentUser=null,allAreas=[],allBP=[],allCases=[],allLogs=[];
 let selectedCat='',selectedSev='',selectedStat='open',selectedScope='Branch',selectedRutinStat='prog';
 let currentTipe='noncase',logFilterStatus='semua',pendingFormData=null,lineChartInstance=null;
-const BP_NONCASE=['NC.UMD','NC.SM','NC.DEV','NC.NCD','NC.ISD','NC.NCR','NC.NSD','NC.DI','NC.WEB'];
+const BP_NONCASE=['NC.UMD','NC.SM','NC.DEV','NC.NCD','NC.ISD','NC.NCR','NC.NSD','NC.DI','NC.WEB','NC.KOR'];
 const BP_CASE=['CS.TRBSFA','CS.TRBMD','CS.TRBTS','CS.TRBNCD','CS.TRBDR','CS.TRBDSD','CS.TRBCR'];
 
 function showToast(msg,type=''){const t=document.getElementById('toast');t.textContent=msg;t.className='toast show '+type;setTimeout(()=>t.className='toast',3000);}
